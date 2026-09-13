@@ -1,4 +1,4 @@
-# lpi-701-devops-tools-engineer-exam-preperation-guide
+# LPI 701 Devops Tools Engineer exam preperation guide
 LPI  exam 701 DevOps  Tools Engineer exam preparation guide 
 
 # LPIC DevOps Tools Engineer (Exam 701) — Hands-On Scenario-Based Exam Preparation Guide
