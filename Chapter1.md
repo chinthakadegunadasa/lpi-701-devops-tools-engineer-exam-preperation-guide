@@ -3,28 +3,7 @@
 This topic addresses the core concepts of modern application design, cloud-native architecture, and operational practices required for the LPI DevOps Tools Engineer (Exam 701) certification.
 [![Agile & DevOps Workflows](img/devops-workflow.png)]
 
-```
-                     +---------------------------------------+
-                     |        Agile & DevOps Workflows       |
-                      +---------------------------------------+
-                                         |
-               +-------------------------+-------------------------+
-               |                                                   |
-               v                                                   v
-  +--------------------------+                           +-------------------+
-  | Application Architecture |                           |   Cloud-Native    |
-  |  (12-Factor / Stateless) |                           | Operations Model  |
-  +--------------------------+                           +-------------------+
-               |                                                   |
-        +------+------+                                     +------+------+
-        |             |                                     |             |
-        v             v                                     v             v
-  +-----------+ +-----------+                         +-----------+ +-----------+
-  | Session   | | DB Schema |                         | Immutable | | GitOps    |
-  | Decoupling| | Migrations|                         | Containers| | Workflows |
-  +-----------+ +-----------+                         +-----------+ +-----------+
 
-```
 ### 12-Factor App Methodology
  * **Codebase:** One repository tracked in version control per application, with multiple deployments (dev, staging, production) originating from identical code assets.
  * **Dependencies:** Explicitly declare and isolate dependencies using explicit manifest locks (e.g., package-json.lock, Pipfile.lock) rather than relying on implicit system-level packages.
