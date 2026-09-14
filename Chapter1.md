@@ -31,6 +31,8 @@ This topic addresses the core concepts of modern application design, cloud-nativ
 ## 2. Real-World Production Scenario
 ### System Under Migration
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
+[![Legacy Architecture: Monolithic & Vulnerablel]] a (img/devops-workflow.png)]
+
 ```
 [ Legacy Architecture: Monolithic & Vulnerable ]
 +-----------------------------------------------------------------+
