@@ -3,7 +3,6 @@
 This topic addresses the core concepts of modern application design, cloud-native architecture, and operational practices required for the LPI DevOps Tools Engineer (Exam 701) certification.
 ![Agile & DevOps Workflows](img/devops-workflow.png)]
 
-
 ### 12-Factor App Methodology
  * **Codebase:** One repository tracked in version control per application, with multiple deployments (dev, staging, production) originating from identical code assets.
  * **Dependencies:** Explicitly declare and isolate dependencies using explicit manifest locks (e.g., package-json.lock, Pipfile.lock) rather than relying on implicit system-level packages.
@@ -31,7 +30,7 @@ This topic addresses the core concepts of modern application design, cloud-nativ
 ## 2. Real-World Production Scenario
 ### System Under Migration
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
-[![Legacy Architecture](img/lpi-ex701-legacy-architecture.jpg)]
+![Legacy Architecture](img/lpi-ex701-legacy-architecture.jpg)]
 ### Architectural Objectives
  1. Decouple session management into an external Redis layer.
  2. Isolate schema modifications from the application binary lifecycle using decoupled migration scripts.
