@@ -22,6 +22,7 @@ Source code versioning is the foundational pillar of modern DevOps pipelines. Th
 ## 2. Real-World Production Scenario
 ### System Under Outage
 A critical memory leak and credential leak have reached the main branch of an enterprise microservices engine across a history spanning over 500+ commits. Simultaneously, multiple developer teams report severe branch drift and conflicting release topologies during an emergency hotfix deployment.
+![Compromise linear- Topology](img/lpi-ex701-ch2-compromised-linear-topology.png)
 ```
 [ Compromised Linear Topology & History Drift ]
 ... C100 ---> C101 ---> [ Secret Leaked! ] ---> C350 ---> [ Bug Introduced ] ---> C500 (HEAD)
