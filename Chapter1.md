@@ -1,14 +1,14 @@
 # Chapter 1: 701.1 Principles of Software Development & DevOps Best Practices
 ## 1. Objective Architecture & Theoretical Foundations
 This topic addresses the core concepts of modern application design, cloud-native architecture, and operational practices required for the LPI DevOps Tools Engineer (Exam 701) certification.
-![Agile & DevOps Workflows](img/devops-workflow.png)]
+![Agile & DevOps Workflows](img/devops-workflow.png) 
 
 ### 12-Factor App Methodology
  * **Codebase:** One repository tracked in version control per application, with multiple deployments (dev, staging, production) originating from identical code assets.
  * **Dependencies:** Explicitly declare and isolate dependencies using explicit manifest locks (e.g., package-json.lock, Pipfile.lock) rather than relying on implicit system-level packages.
  * **Config:** Store configuration variables that vary across environments (database URIs, API tokens) strictly in environment variables, completely separated from code.
  * **Backing Services:** Treat attached resources (databases, message brokers, caching nodes) as bound remote resources consumed via URL endpoints and credentials without code modifications.
- * **Build, Release, Run:** Strictly separate execution stages. The *Build* stage converts code into an immutable executable bundle; the *Release* stage combines the build with environment configuration; the *Run* stage executes the application runtime.
+ * **Build, Release, Run:** Strictly separate execution stages. The *Build* stage converts code into an immutable executable bundle; the *Release* stage combines the build with environment configuration; the *Run* stage executes the application runtime.  
  * **Processes:** Execute the application as one or more stateless, share-nothing processes. Persistent data must be offloaded to a backing store (e.g., PostgreSQL, Redis).
  * **Port Binding:** Applications must be fully self-contained and export services by binding directly to a network port, eliminating reliance on external web server injection.
  * **Concurrency:** Scale out horizontally by relying on the process model, distributing workloads across lightweight, discrete processes.
@@ -30,7 +30,7 @@ This topic addresses the core concepts of modern application design, cloud-nativ
 ## 2. Real-World Production Scenario
 ### System Under Migration
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
-![Legacy Architecture](img/lpi-ex701-legacy-architecture.jpg)]
+![Legacy Architecture](img/lpi-ex701-legacy-architecture.jpg)
 ### Architectural Objectives
  1. Decouple session management into an external Redis layer.
  2. Isolate schema modifications from the application binary lifecycle using decoupled migration scripts.
