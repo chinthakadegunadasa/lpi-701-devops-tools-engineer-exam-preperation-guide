@@ -1,23 +1,6 @@
 # Chapter 3: 702.1 Container Virtualization with Docker
 ## 1. Objective Architecture & Theoretical Foundations
-Docker and container virtualization form a core component of the LPIC DevOps Tools Engineer (Exam 701) certification. This topic evaluates your understanding of container runtimes, underlying Linux kernel namespaces, control groups (cgroups), Open Container Initiative (OCI) standards, networking topologies, storage drivers, and optimized multi-stage image builds.  ![Container Runtime Architecture](img/lpi-701-ch3-container-runtime-architure.png)
-
-
-                                                       |
-                v                                                       v
-   +--------------------------+                               +-------------------+
-   |  Kernel Isolation Engine |                               | Container Storage |
-   |  (Namespaces & cgroups)  |                               |    & Networking   |
-   +--------------------------+                               +-------------------+
-                |                                                       |
-         +------+------+                                         +------+------+
-         |             |                                         |             |
-         v             v                                         v             v
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   | Linux     | | Resource  |                             | Copy-on-  | | Network   |
-   | Namespaces| | Constraints|                            | Write     | | Topologies|
-   | (PID, NET)| | (cgroups) |                             | Overlay2  | | (Bridge)  |
-   +-----------+ +-----------+                           
+Docker and container virtualization form a core component of the LPIC DevOps Tools Engineer (Exam 701) certification. This topic evaluates your understanding of container runtimes, underlying Linux kernel namespaces, control groups (cgroups), Open Container Initiative (OCI) standards, networking topologies, storage drivers, and optimized multi-stage image builds.  ![Container Runtime Architecture](img/lpi-701-ch3-container-runtime-architure.png)                                                                   v                                                       
 ### Kernel Primitive Isolation
  * **Linux Namespaces:** Provide system resource isolation per container context. Key namespaces include:
    * pid: Isolates process trees (process ID mapping).
