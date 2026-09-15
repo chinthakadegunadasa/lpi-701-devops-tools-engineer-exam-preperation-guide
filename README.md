@@ -9,18 +9,18 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 - **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
 - **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
----
+
 
 ## Part I: Software Configuration Management & Machine Deployment (Weight 10)
 
 ### Topic 701: Modern Software Development & DevOps Principles
-- **701.1 Principles of Software Development & DevOps Best Practices**
+- **![701.1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
   - **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
   - **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck — Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
   - **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
   - **Scenario Review & Self-Assessment:** Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
 
-- **701.2 Source Code & Version Control Systems (Git)**
+- **![701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
   - **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolution.
   - **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
   - **Hands-On Lab 1.2:**
@@ -30,12 +30,10 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Deep Dive into `git cherry-pick`, `git rebase -i`, `git reflog`, `git worktree`.
   - **Scenario Review & Self-Assessment:** Resolving Complex Three-Way Merge Conflicts and Exam-Style Practice Questions.
 
----
-
 ## Part II: Container Management & Orchestration (Weight 13)
 
 ### Topic 702: Container Virtualization & Runtime Environments
-- **702.1 Container Virtualization with Docker**
+- **![702.1 Container Virtualization with Docker](Chapter3.md)**
   - **Theory & Objectives:** OCI Specifications, Linux Namespaces & cgroups, Docker Engine Architecture, Multistage Builds, Storage Drivers, Networking Modes (Bridge, Host, Overlay, Macvlan), Docker Compose.
   - **Real-World Scenario 2.1:** Hardening and Optimizing a Vulnerable, Bloated Node.js/Python Enterprise Image (Reducing Image Size from 1.8GB to 45MB while Eliminating CVEs).
   - **Hands-On Lab 2.1:**
