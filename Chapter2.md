@@ -22,71 +22,16 @@ Source code versioning is the foundational pillar of modern DevOps pipelines. Th
 ## 2. Real-World Production Scenario
 ### System Under Outage
 A critical memory leak and credential leak have reached the main branch of an enterprise microservices engine across a history spanning over 500+ commits. Simultaneously, multiple developer teams report severe branch drift and conflicting release topologies during an emergency hotfix deployment.
-![Compromise linear- Topology](img/lpi-ex701-ch2-compromised-linear-topology.png)
-```
-[ Compromised Linear Topology & History Drift ]
-... C100 ---> C101 ---> [ Secret Leaked! ] ---> C350 ---> [ Bug Introduced ] ---> C500 (HEAD)
-                                                                |
-                                                                +---> Hotfix Drift Failure!
-
-                                      |
-                                      |  REMEDIATION & RECOVERY PIPELINE
-                                      v
-
-[ Cleaned & Rescued Repository State ]
-1. Run `git bisect`      ==> Isolate the bug commit automatically.
-2. Run `git reflog`      ==> Recover accidentally lost commits.
-3. Install Hooks         ==> Block secrets at `pre-receive` / `pre-commit`.
-4. Run `git rebase -i`   ==> Purge secret commits & squash history linear trace.
-
-```
-### Architectural Objectives
- 1. Use git bisect with automated regression scripts to find the breaking commit across 500+ updates.
- 2. Recover accidentally dropped production hotfix commits using git reflog.
- 3. Scrub sensitive API tokens from historical commits using interactive rebasing (git rebase -i).
- 4. Implement client-side and server-side Git hooks to block secrets and prevent syntax errors before code reaches central repositories.
-## 3. Hands-On Step-by-Step Implementation Lab
-### Lab Environment Setup
+![Compromise linear Topology](img/lpi-ex701-ch2-compromised-linear-topology.png)
+ Architectural Objectives
+Use git bisect with automated regression scripts to find the breaking commit across 500+ updates.
+Recover accidentally dropped production hotfix commits using git reflog.
+Scrub sensitive API tokens from historical commits using interactive rebasing (git rebase -i).
+Implement client-side and server-side Git hooks to block secrets and prevent syntax errors before code reaches central repositories.
+3. Hands-On Step-by-Step Implementation Lab
+Lab Environment Setup
 Initialize a clean local workspace:
-```bash
-mkdir -p devops-701-git-lab && cd devops-701-git-lab
-git init .
-git config user.name "DevOps Engineer"
-git config user.email "devops@example.com"
 
-```
-### Step 1: Setting Up Pre-Commit & Server-Side Security Hooks
-Create a client-side pre-commit hook (.git/hooks/pre-commit) to block hardcoded API keys and syntax errors:
-```bash
-#!/bin/bash
-# Client-side pre-commit hook: Block secrets and syntax errors
-
-# Check for AWS/Generic Secret Key Patterns
-if git diff --cached | grep -E -q 'AWS_SECRET_ACCESS_KEY|SECRET_KEY\s*=\s*"[A-Za-z0-9/+=]{10,}"'; then
-    echo "ERROR: Hardcoded secret detected in staged files!"
-    echo "Commit rejected by pre-commit hook."
-    exit 1
-fi
-
-# Check Python Syntax Errors
-staged_py_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
-if [ -n "$staged_py_files" ]; then
-    for file in $staged_py_files; do
-        if [ -f "$file" ]; then
-            python3 -m py_compile "$file" 2>/dev/null
-            if [ $? -ne 0 ]; then
-                echo "ERROR: Syntax error detected in $file"
-                exit 1
-            fi
-        fi
-    done
-fi
-
-exit 0
-
-```
-Make the hook executable:
-```bash
 chmod +x .git/hooks/pre-commit
 
 ```
