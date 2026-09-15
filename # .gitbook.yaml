@@ -1,0 +1,29 @@
+# .gitbook.yaml
+root: ./
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md
+
+title: "LPIC-3 / 701 DevOps Tools Engineer Exam Guide"
+description: "Comprehensive open-source study guide and hands-on labs for the LPI 701-100 exam."
+author: "Chinthaka Degunadasa"
+language: en
+
+pdf:
+  pageNumbers: true
+  fontSize: 10
+  fontFamily: "Liberation Serif"
+  paperSize: b5
+  margin:
+    right: 15
+    left: 20
+    top: 15
+    bottom: 15
+
+plugins:
+  - "-sharing"
+  - "-fontsettings"
+  - katex
+  - code
+  - collapsible-chapters
