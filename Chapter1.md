@@ -1,7 +1,8 @@
 # Chapter 1: 701.1 Principles of Software Development & DevOps Best Practices
 ## 1. Objective Architecture & Theoretical Foundations
 This topic addresses the core concepts of modern application design, cloud-native architecture, and operational practices required for the LPI DevOps Tools Engineer (Exam 701) certification.
-![Agile & DevOps Workflows](img/devops-workflow.png) 
+
+![Cloud Native Application](img/lpi-701-ch1-cloud-native.png) 
 
 ### 12-Factor App Methodology
  * **Codebase:** One repository tracked in version control per application, with multiple deployments (dev, staging, production) originating from identical code assets.
