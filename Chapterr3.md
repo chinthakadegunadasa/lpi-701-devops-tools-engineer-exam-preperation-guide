@@ -1,6 +1,6 @@
 # Chapter 3: 702.1 Container Virtualization with Docker
 ## 1. Objective Architecture & Theoretical Foundations
-Docker and container virtualization form a core component of the LPIC DevOps Tools Engineer (Exam 701) certification. This topic evaluates your understanding of container runtimes, underlying Linux kernel namespaces, control groups (cgroups), Open Container Initiative (OCI) standards, networking topologies, storage drivers, and optimized multi-stage image builds.
+Docker and container virtualization form a core component of the LPIC DevOps Tools Engineer (Exam 701) certification. This topic evaluates your understanding of container runtimes, underlying Linux kernel namespaces, control groups (cgroups), Open Container Initiative (OCI) standards, networking topologies, storage drivers, and optimized multi-stage image builds.  ![Container Runtime Architecture](img/lpi-701-ch3-container-runtime-architure.png)
 ```
                     +-------------------------------------------------+
                     |        Container Runtime Architecture          |
