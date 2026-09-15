@@ -3,28 +3,7 @@
 Source code versioning is the foundational pillar of modern DevOps pipelines. This section covers advanced Git architecture, repository maintenance strategies, branching strategies, and programmatic hook automation required for the LPIC DevOps Tools Engineer (Exam 701) certification.
 ![Git Workflows](img/lpi-ex701-ch2-git-workflows.png)
 ```
-                   +-------------------------------------------------+
-                   |           Git Workflows & Architecture          |
-                   +-------------------------------------------------+
-                                           |
-               +---------------------------+---------------------------+
-               |                                                       |
-               v                                                       v
-  +--------------------------+                               +-------------------+
-  |   Branching & History    |                               | Hook & Submodule  |
-  |  (Trunk / Rebase / Ref)  |                               |   Orchestration   |
-  +--------------------------+                               +-------------------+
-               |                                                       |
-        +------+------+                                         +------+------+
-        |             |                                         |             |
-        v             v                                         v             v
-  +-----------+ +-----------+                             +-----------+ +-----------+
-  | Interactive| | Advanced  |                             | Client &  | | Submodules|
-  |  Rebase   | | Bisecting |                             | Server    | |  versus   |
-  | & Reflog  | | Workflows |                             | Hooks     | | Subtrees  |
-  +-----------+ +-----------+                             +-----------+ +-----------+
 
-```
 ### Advanced Git Workflows
  * **Trunk-Based Development:** Developers merge small, frequent updates directly into a core single branch (main or trunk). Requires robust automated CI test gates, short-lived feature branches, and feature flags to decouple deployment from release.
  * **GitFlow Strategy:** Uses strict branching conventions: explicit long-lived branches (main, develop) alongside temporary supporting branches (feature/*, release/*, hotfix/*). Best suited for scheduled, versioned software releases.
