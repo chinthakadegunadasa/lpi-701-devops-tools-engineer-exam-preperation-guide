@@ -7,7 +7,7 @@ structure:
 
 title: "LPIC-3 / 701 DevOps Tools Engineer Exam Guide"
 description: "Comprehensive open-source study guide and hands-on labs for the LPI 701-100 exam."
-author: "Chinthaka Degunadasa"
+author: "Chinthaka Deshapriya Gunadasa"
 language: en
 
 pdf:
@@ -21,7 +21,7 @@ pdf:
     top: 15
     bottom: 15
 
-plugins:
+plugins:sa
   - "-sharing"
   - "-fontsettings"
   - katex
