@@ -22,25 +22,7 @@ Source code versioning is the foundational pillar of modern DevOps pipelines. Th
 ## 2. Real-World Production Scenario
 ### System Under Outage
 A critical memory leak and credential leak have reached the main branch of an enterprise microservices engine across a history spanning over 500+ commits. Simultaneously, multiple developer teams report severe branch drift and conflicting release topologies during an emergency hotfix deployment.
-![](img/lpi-ex701-ch2-compromised-linear-topology.png)
-
-```
-[ Compromised Linear Topology & History Drift ]
-... C100 ---> C101 ---> [ Secret Leaked! ] ---> C350 ---> [ Bug Introduced ] ---> C500 (HEAD)
-                                                                |
-                                                                +---> Hotfix Drift Failure!
-
-                                      |
-                                      |  REMEDIATION & RECOVERY PIPELINE
-                                      v
-
-[ Cleaned & Rescued Repository State ]
-1. Run `git bisect`      ==> Isolate the bug commit automatically.
-2. Run `git reflog`      ==> Recover accidentally lost commits.
-3. Install Hooks         ==> Block secrets at `pre-receive` / `pre-commit`.
-4. Run `git rebase -i`   ==> Purge secret commits & squash history linear trace.
-
-```
+![](img/lpi-ex701-ch2-compromised-linear-topology.png) ppl
 ### Architectural Objectives
  1. Use git bisect with automated regression scripts to find the breaking commit across 500+ updates.
  2. Recover accidentally dropped production hotfix commits using git reflog.
