@@ -1,6 +1,7 @@
 # Chapter 2: 701.2 Source Code & Version Control Systems (Git)
 ## 1. Objective Architecture & Theoretical Foundations
 Source code versioning is the foundational pillar of modern DevOps pipelines. This section covers advanced Git architecture, repository maintenance strategies, branching strategies, and programmatic hook automation required for the LPIC DevOps Tools Engineer (Exam 701) certification.
+![Git Workflows](lpi-ex701-ch2-git-workflows.png)
 ```
                    +-------------------------------------------------+
                    |           Git Workflows & Architecture          |
