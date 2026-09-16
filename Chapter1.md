@@ -31,7 +31,7 @@ This topic addresses the core concepts of modern application design, cloud-nativ
 ## 2. Real-World Production Scenario
 ### System Under Migration
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
-![Legacy Architecture](img/lpi-ex701-ch1-legacy-architecture-monolithic-vulnerable.jpeg)
+![Legacy Architecture](img/lpi-ex701-ch1-cloud-native-application-operations-framework.jpeg)
 ### Architectural Objectives
  1. Decouple session management into an external Redis layer.
  2. Isolate schema modifications from the application binary lifecycle using decoupled migration scripts.
