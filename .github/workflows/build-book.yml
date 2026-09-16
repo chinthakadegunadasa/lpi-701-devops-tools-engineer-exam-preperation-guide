@@ -1,0 +1,68 @@
+name: Build LPIC-701 Book (DOCX & B5 PDF)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - '.github/workflows/build-book.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-publish-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc, LibreOffice, and Required Fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pandoc \
+            libreoffice \
+            fonts-liberation \
+            fonts-dejavu \
+            texlive-extra-utils
+
+      - name: Concatenate Markdown Chapters
+        run: |
+          mkdir -p dist
+          # Combine README and all chapters into a single master source
+          cat README.md Chapter*.md > dist/FULL_BOOK.md
+
+      - name: Convert Markdown to DOCX via Pandoc
+        run: |
+          pandoc dist/FULL_BOOK.md \
+            -o dist/LPIC-701-DevOps-Guide.docx \
+            --toc \
+            --toc-depth=3 \
+            --highlight-style=tango \
+            --dpi=300
+
+      - name: Convert DOCX to Print-Ready B5 PDF via Headless LibreOffice
+        run: |
+          # Convert DOCX to PDF using LibreOffice headless engine
+          soffice --headless \
+            --convert-to pdf \
+            --outdir dist/ \
+            dist/LPIC-701-DevOps-Guide.docx
+
+      - name: Upload PDF Artifact (Amazon KDP & Shopify Ready)
+        uses: actions/upload-artifact@v4
+        with:
+          name: LPIC-701-DevOps-Guide-B5-PDF
+          path: dist/LPIC-701-DevOps-Guide.pdf
+          retention-days: 90
+
+      - name: Release Book Artifact on GitHub Tag (Optional)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/LPIC-701-DevOps-Guide.pdf
+            dist/LPIC-701-DevOps-Guide.docx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
