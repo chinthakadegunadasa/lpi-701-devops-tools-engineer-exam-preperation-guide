@@ -4,7 +4,7 @@
 ## 5.1 Orchestration Paradigm Shift: Single-Host vs. Clustered Operations
 
 Deploying containers on a single host introduces severe single-point-of-failure (SPOF) risks and operational bottlenecks. As applications scale, orchestration platforms automate process scheduling, state management, inter-host networking, and fault tolerance across a cluster of nodes.
-
+![Legacy Deployment vs High-Availability Architecture](img/lpi-ex701-ch4-legacy-vs-highlevel-deployment.jpeg)
 
 ```
 
