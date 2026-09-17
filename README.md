@@ -9,8 +9,6 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 - **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
 - **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
-
-
 ## Part I: Software Configuration Management & Machine Deployment (Weight 10)
 
 ### Topic 701: Modern Software Development & DevOps Principles
@@ -58,7 +56,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part III: Configuration Management & Infrastructure Automation (Weight 14)
 
 ### Topic 703: Infrastructure Configuration Management Tools
-- **[703.1 Infrastructure Automation with Ansible](Chapter4.md)**
+- **[703.1 Infrastructure Automation with Ansible](Chapter5.md)**
   - **Theory & Objectives:** Agentless Architecture, Control Nodes vs. Managed Nodes, Inventory Files (Static/Dynamic), Playbooks, Modules, Roles, Handlers, Variables, Vault, Jinja2 Templating, Molecule Testing.
   - **Real-World Scenario 3.1:** Automating Emergency OS Security Patching and Configuration Drift Remediation across 200 Hybrid Infrastructure Servers.
   - **Hands-On Lab 3.1:**
@@ -69,7 +67,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** `ansible-playbook`, `ansible-galaxy`, `ansible-vault`, `ansible-doc`, Ad-hoc Execution Commands.
   - **Scenario Review & Self-Assessment:** Debugging Playbook Execution Failures, Task Idempotence Validation, and Exam-Style Practice Questions.
 
-- **[703.2 Infrastructure Provisioning with Terraform / Cloud Architecture]((Chapter4.md))**
+- **[703.2 Infrastructure Provisioning with Terraform / Cloud Architecture]((Chapter6.md))**
   - **Theory & Objectives:** Declarative Infrastructure, HCL Syntax, Providers, Resources, State File Management (Remote Backend, Locking via DynamoDB/S3), Modules, Variables, Data Sources, Workspace Management.
   - **Real-World Scenario 3.2:** Rebuilding a Corrupted Multi-Tier AWS/Cloud Environment from Scratch using Immutable Terraform Code and Remote State Recovery.
   - **Hands-On Lab 3.2:**
@@ -84,7 +82,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part IV: Continuous Integration & Continuous Delivery (CI/CD) (Weight 12)
 
 ### Topic 704: CI/CD Pipelines & Service Integration
-- **[704.1 Continuous Integration with Jenkins](Chapter5.md))**
+- **[704.1 Continuous Integration with Jenkins](Chapter7.md))**
   - **Theory & Objectives:** Jenkins Architecture (Master/Controller vs. Agents/Executors), Declarative vs. Scripted Pipelines, Jenkinsfile Syntax, Shared Libraries, Credentials Management, Plugins Ecosystem, Webhooks Integration.
   - **Real-World Scenario 4.1:** Diagnosing and Repairing a Broken Automated CI/CD Deployment Pipeline Blocking Production Hotfixes.
   - **Hands-On Lab 4.1:**
@@ -109,7 +107,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part V: Monitoring, Metrics, & Log Analytics (Weight 11)
 
 ### Topic 705: System Monitoring & Logging Infrastructure
-- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)](Chapter7.md)**
+- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)](Chapter9.md)**
   - **Theory & Objectives:** Pull vs. Push Metrics Architecture, Prometheus Server, Exporters (Node Exporter, cAdvisor), PromQL Queries, Time-Series Data, Alertmanager, Grafana Dashboards & Data Sources.
   - **Real-World Scenario 5.1:** Investigating an Intermittent Production Service Latency Spike using Prometheus Metrics and Grafana Dashboard Analytics.
   - **Hands-On Lab 5.1:**
@@ -120,7 +118,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** PromQL Syntax Guide, Alertmanager Routing Configuration Rules.
   - **Scenario Review & Self-Assessment:** Resolving Missing Metrics, Exporter Scrape Failures, and Exam-Style Practice Questions.
 
-- **[705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)](Chapter8.md)**
+- **[705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)](Chapter10.md)**
   - **Theory & Objectives:** Centralized Logging Topologies, Elasticsearch/OpenSearch indexing, Logstash Pipelines, Kibana Visualizations, Beats Filebeat/Metricbeat, Fluentd/Fluent Bit Log Shippers.
   - **Real-World Scenario 5.2:** Root Cause Analysis of an Application Ingress Crash using Centralized Log Aggregation and Correlation.
   - **Hands-On Lab 5.2:**
