@@ -334,7 +334,6 @@ curl -i http://localhost:8080
 
 ## 5. Command & Tool Quick Reference
 
-```
 | Command / Flag | Purpose / Objective | Example Usage |
 | --- | --- | --- |
 | `docker swarm init` | Initializes a Docker Swarm manager node on the current host. | `docker swarm init --advertise-addr <IP>` |
@@ -343,8 +342,6 @@ curl -i http://localhost:8080
 | `kubectl apply -f` | Declaratively creates or updates Kubernetes resources defined in a file. | `kubectl apply -f deployment.yaml` |
 | `kubectl rollout status` | Monitors the progress of a deployment rolling update. | `kubectl rollout status deployment/web-app` |
 | `kubectl get pods -o wide` | Lists Pods with detailed information, including assigned worker node and Pod IP. | `kubectl get pods -o wide` |
-
----
 
 ## 6. Exam-Style Self-Assessment Questions
 
