@@ -28,6 +28,8 @@ Docker and container virtualization form a core component of the LPIC DevOps Too
 ## 2. Real-World Production Scenario
 ### System Under Hardening
 An enterprise Node.js microservice image is deployed in production using a single-stage build. The container runs as root, packages unnecessary OS build tools (gcc, make, python), weighs 1.8 GB, contains critical CVE vulnerabilities, and lacks container resource limits.
+!Vulnerable Legacy Build](img/(lpi-ex701-ch3-vulnerable-legacy-build.jpeg)
+
 ```
 [ Vulnerable Legacy Build: 1.8 GB ]
 +-----------------------------------------------------------------+
