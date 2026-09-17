@@ -3,32 +3,6 @@
 ## 1. Objective Architecture & Theoretical Foundations
 
 Container orchestration automates the deployment, scaling, networking, and lifecycle management of containerized workloads across multi-node clusters. This chapter covers Docker Swarm and Kubernetes fundamentals as specified in the LPIC DevOps Tools Engineer (Exam 701) exam objectives. ![Container Orchestration Architectures](img/lpi-ex701-ch4-container-orchestration-architectures.jpeg)
-
-
-```
-                    +-------------------------------------------------+
-                    |       Container Orchestration Architectures     |
-                    +-------------------------------------------------+
-                                            |
-                +---------------------------+---------------------------+
-                |                                                       |
-                v                                                       v
-   +--------------------------+                               +-------------------+
-   |   Docker Swarm Engine    |                               |    Kubernetes     |
-   | (Raft Consensus & Tasks) |                               | Control Plane     |
-   +--------------------------+                               +-------------------+
-                |                                                       |
-         +------+------+                                         +------+------+
-         |             |                                         |             |
-         v             v                                         v             v
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   | Manager / | | Overlay   |                             | Kube-     | | Pods,     |
-   | Worker    | | Routing   |                             | API /     | | Services  |
-   | Nodes     | | Mesh      |                             | etcd      | | & Deploy  |
-   +-----------+ +-----------+                             +-----------+ +-----------+
-
-```
-
 ### Docker Swarm Mechanics & Clustering
 
 * **Manager vs. Worker Nodes:** Manager nodes handle cluster management tasks, maintain cluster state, schedule services, and serve Swarm HTTP endpoints. Worker nodes receive and execute tasks dispatched by manager nodes.
