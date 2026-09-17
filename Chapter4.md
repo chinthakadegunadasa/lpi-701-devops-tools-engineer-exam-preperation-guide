@@ -13,8 +13,6 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 * **Task:** Individual running container instance managed by Swarm.
 * **Stack:** Multi-service application deployment defined via declarative Compose-style YAML files using `docker stack deploy`.
 
-
-
 ### Kubernetes Architecture & Primitives
 
 * **Control Plane Components:**
@@ -27,8 +25,7 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 * `kubelet`: Primary node agent that ensures containers defined in PodSpecs are running and healthy.
 * `kube-proxy`: Maintains network rules on nodes to handle service IP routing and traffic forwarding.
 * Container Runtime: The underlying software responsible for running containers (e.g., `containerd`, `CRI-O`).
-
-
+  
 * **Kubernetes API Objects:**
 * **Pod:** The smallest deployable unit in Kubernetes, containing one or more co-located containers sharing network and storage namespaces.
 * **Deployment:** Declaratively manages ReplicaSets and Pod updates, enabling zero-downtime rolling updates and rollbacks.
@@ -42,36 +39,12 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 A enterprise e-commerce backend running on an un-orchestrated Docker host experiences dropping connections under high load. Deployments cause temporary service downtime, container failures require manual intervention, and internal services lack load balancing.
 ![Legacy Deployment vs High-Availability Architecture](img/lpi-ex701-ch4-legacy-vs-highlevel-deployment.jpeg)
 
-```
-[ Legacy Deployment: Single-Host Static Setup ]
-+-----------------------------------------------------------------+
-| Docker Host (Single Point of Failure)                           |
-|  - Manual container restarts on failure                         |
-|  - Downtime during image deployments                            |
-|  - Hardcoded local networking                                   |
-+-----------------------------------------------------------------+
-                                  |
-                                  |  ORCHESTRATION MIGRATION PIPELINE
-                                  v
-[ Orchestrated High-Availability Architecture ]
-+-----------------------------------------------------------------+
-| Docker Swarm / Kubernetes Multi-Node Cluster                     |
-|  - Multi-replica Deployment with Automated Self-Healing         |
-|  - Zero-Downtime Rolling Upgrades with Health Checks            |
-|  - Ingress Routing Mesh & Service-Based Load Balancing          |
-|  - Decoupled Secrets & Dynamic Scaling                          |
-+-----------------------------------------------------------------+
-
-```
-
 ### Architectural Objectives
 
 1. Initialize a Docker Swarm cluster and deploy a multi-service stack with overlay networking and health checks.
 2. Execute a zero-downtime rolling update across container replicas.
 3. Author production-ready Kubernetes manifests (`Deployment`, `Service`, `ConfigMap`).
 4. Perform node maintenance draining and workload recovery procedures.
-
----
 
 ## 3. Hands-On Step-by-Step Implementation Lab
 
@@ -361,6 +334,7 @@ curl -i http://localhost:8080
 
 ## 5. Command & Tool Quick Reference
 
+```
 | Command / Flag | Purpose / Objective | Example Usage |
 | --- | --- | --- |
 | `docker swarm init` | Initializes a Docker Swarm manager node on the current host. | `docker swarm init --advertise-addr <IP>` |
