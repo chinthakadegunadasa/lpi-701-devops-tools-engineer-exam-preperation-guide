@@ -2,7 +2,7 @@
 
 ## 1. Objective Architecture & Theoretical Foundations
 
-Container orchestration automates the deployment, scaling, networking, and lifecycle management of containerized workloads across multi-node clusters. This chapter covers Docker Swarm and Kubernetes fundamentals as specified in the LPIC DevOps Tools Engineer (Exam 701) exam objectives.![Container Orchestration Architectures](lmg/lpi-ex701-ch4-container-orchestration-architectures.jpegj)
+Container orchestration automates the deployment, scaling, networking, and lifecycle management of containerized workloads across multi-node clusters. This chapter covers Docker Swarm and Kubernetes fundamentals as specified in the LPIC DevOps Tools Engineer (Exam 701) exam objectives.![Container Orchestration Architectures](lmg/lpi-ex701-ch4-container-orchestration-architectures.jpeg)
 
 
 
