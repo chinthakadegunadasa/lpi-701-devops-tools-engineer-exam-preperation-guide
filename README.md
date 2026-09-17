@@ -43,7 +43,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
   - **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
 
-- **702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)**
+- **[702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
   - **Theory & Objectives:** Clustering Architecture, Manager/Worker Nodes, Raft Consensus, Service Scaling, Rolling Updates, Secrets Management, Ingress Routers (Traefik/Nginx), Pods, Services, Deployments, ConfigMaps.
   - **Real-World Scenario 2.2:** High-Availability Cluster Outage Recovery — Migrating Services and Zero-Downtime Rolling Upgrades under Heavy Traffic Load.
   - **Hands-On Lab 2.2:**
@@ -58,7 +58,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part III: Configuration Management & Infrastructure Automation (Weight 14)
 
 ### Topic 703: Infrastructure Configuration Management Tools
-- **703.1 Infrastructure Automation with Ansible**
+- **[703.1 Infrastructure Automation with Ansible](Chapter4.md)**
   - **Theory & Objectives:** Agentless Architecture, Control Nodes vs. Managed Nodes, Inventory Files (Static/Dynamic), Playbooks, Modules, Roles, Handlers, Variables, Vault, Jinja2 Templating, Molecule Testing.
   - **Real-World Scenario 3.1:** Automating Emergency OS Security Patching and Configuration Drift Remediation across 200 Hybrid Infrastructure Servers.
   - **Hands-On Lab 3.1:**
@@ -69,7 +69,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** `ansible-playbook`, `ansible-galaxy`, `ansible-vault`, `ansible-doc`, Ad-hoc Execution Commands.
   - **Scenario Review & Self-Assessment:** Debugging Playbook Execution Failures, Task Idempotence Validation, and Exam-Style Practice Questions.
 
-- **703.2 Infrastructure Provisioning with Terraform / Cloud Architecture**
+- **[703.2 Infrastructure Provisioning with Terraform / Cloud Architecture]((Chapter4.md))**
   - **Theory & Objectives:** Declarative Infrastructure, HCL Syntax, Providers, Resources, State File Management (Remote Backend, Locking via DynamoDB/S3), Modules, Variables, Data Sources, Workspace Management.
   - **Real-World Scenario 3.2:** Rebuilding a Corrupted Multi-Tier AWS/Cloud Environment from Scratch using Immutable Terraform Code and Remote State Recovery.
   - **Hands-On Lab 3.2:**
@@ -84,7 +84,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part IV: Continuous Integration & Continuous Delivery (CI/CD) (Weight 12)
 
 ### Topic 704: CI/CD Pipelines & Service Integration
-- **704.1 Continuous Integration with Jenkins**
+- **[704.1 Continuous Integration with Jenkins](Chapter5.md))**
   - **Theory & Objectives:** Jenkins Architecture (Master/Controller vs. Agents/Executors), Declarative vs. Scripted Pipelines, Jenkinsfile Syntax, Shared Libraries, Credentials Management, Plugins Ecosystem, Webhooks Integration.
   - **Real-World Scenario 4.1:** Diagnosing and Repairing a Broken Automated CI/CD Deployment Pipeline Blocking Production Hotfixes.
   - **Hands-On Lab 4.1:**
@@ -94,7 +94,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Jenkinsfile Directives (`pipeline`, `agent`, `stages`, `post`, `environment`, `options`, `when`, `matrix`).
   - **Scenario Review & Self-Assessment:** Troubleshooting Build Failures, Flaky Test Resolution, and Exam-Style Practice Questions.
 
-- **704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions**
+- **[704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions]((Chapter5.md))**
   - **Theory & Objectives:** `.gitlab-ci.yml` Structure, Runners, Executors, Stages, Artifacts, Caching, Environment Variables, GitHub Actions Workflow Syntax (`.github/workflows`), Runners, Actions, Secret Management.
   - **Real-World Scenario 4.2:** Migrating a Legacy Monolithic Enterprise Build System to a Distributed GitHub Actions / GitLab CI Matrix Build Environment.
   - **Hands-On Lab 4.2:**
@@ -109,7 +109,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part V: Monitoring, Metrics, & Log Analytics (Weight 11)
 
 ### Topic 705: System Monitoring & Logging Infrastructure
-- **705.1 Metrics Collection & Visualization (Prometheus & Grafana)**
+- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)]((Chapter6.md))**
   - **Theory & Objectives:** Pull vs. Push Metrics Architecture, Prometheus Server, Exporters (Node Exporter, cAdvisor), PromQL Queries, Time-Series Data, Alertmanager, Grafana Dashboards & Data Sources.
   - **Real-World Scenario 5.1:** Investigating an Intermittent Production Service Latency Spike using Prometheus Metrics and Grafana Dashboard Analytics.
   - **Hands-On Lab 5.1:**
