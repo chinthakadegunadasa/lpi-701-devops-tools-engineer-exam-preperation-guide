@@ -8,7 +8,7 @@ In a modern cloud-native architecture, distributed systems generate high-volume,
 
 Log management relies on a decoupled, three-stage architecture: **Collection & Forwarding**, **Log Ingestion & Indexing**, and **Visualization**.
 
-![Log-Management-Architecture](lpi-ex701-ch8-Log-Management-Architecture.jpeg)
+![Log-Management-Architecture](img/pi-ex701-ch8-Log-Management-Architecture.jpeg)
 
 | Component | Modern Open-Source Tool | Legacy / Enterprise Alternative | Primary Role in Pipeline |
 | --- | --- | --- | --- |
