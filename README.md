@@ -109,7 +109,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part V: Monitoring, Metrics, & Log Analytics (Weight 11)
 
 ### Topic 705: System Monitoring & Logging Infrastructure
-- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)](Chapter7.md))**
+- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)](Chapter7.md)**
   - **Theory & Objectives:** Pull vs. Push Metrics Architecture, Prometheus Server, Exporters (Node Exporter, cAdvisor), PromQL Queries, Time-Series Data, Alertmanager, Grafana Dashboards & Data Sources.
   - **Real-World Scenario 5.1:** Investigating an Intermittent Production Service Latency Spike using Prometheus Metrics and Grafana Dashboard Analytics.
   - **Hands-On Lab 5.1:**
@@ -120,7 +120,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** PromQL Syntax Guide, Alertmanager Routing Configuration Rules.
   - **Scenario Review & Self-Assessment:** Resolving Missing Metrics, Exporter Scrape Failures, and Exam-Style Practice Questions.
 
-- **705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)(Chapter8.md)**
+- **[705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)](Chapter8.md)**
   - **Theory & Objectives:** Centralized Logging Topologies, Elasticsearch/OpenSearch indexing, Logstash Pipelines, Kibana Visualizations, Beats Filebeat/Metricbeat, Fluentd/Fluent Bit Log Shippers.
   - **Real-World Scenario 5.2:** Root Cause Analysis of an Application Ingress Crash using Centralized Log Aggregation and Correlation.
   - **Hands-On Lab 5.2:**
