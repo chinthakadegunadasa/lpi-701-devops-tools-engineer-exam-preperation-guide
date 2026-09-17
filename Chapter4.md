@@ -6,7 +6,6 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 
 
 
-
 ```
                     +-------------------------------------------------+
                     |       Container Orchestration Architectures     |
