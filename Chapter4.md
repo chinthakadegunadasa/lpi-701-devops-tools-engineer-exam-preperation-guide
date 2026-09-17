@@ -23,7 +23,6 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 * `kube-scheduler`: Assigns newly created Pods to optimal worker nodes based on resource constraints.
 * `kube-controller-manager`: Executes control loops that reconcile cluster state (e.g., ReplicaSet controller, Node controller).
 
-
 * **Worker Node Components:**
 * `kubelet`: Primary node agent that ensures containers defined in PodSpecs are running and healthy.
 * `kube-proxy`: Maintains network rules on nodes to handle service IP routing and traffic forwarding.
@@ -36,15 +35,12 @@ Container orchestration automates the deployment, scaling, networking, and lifec
 * **Service:** Stable network abstraction that exposes a group of Pods via fixed IP endpoints (`ClusterIP`, `NodePort`, `LoadBalancer`).
 * **ConfigMap & Secret:** Decouples configuration data and sensitive credentials from container application code.
 
-
-
----
-
 ## 2. Real-World Production Scenario
 
 ### System Under Outage & Scaling Failure
 
 A enterprise e-commerce backend running on an un-orchestrated Docker host experiences dropping connections under high load. Deployments cause temporary service downtime, container failures require manual intervention, and internal services lack load balancing.
+![Legacy Deployment vs High-Availability Architecture](img/lpi-ex701-ch4-legacy-vs-highlevel-deployment.jpeg)
 
 ```
 [ Legacy Deployment: Single-Host Static Setup ]
