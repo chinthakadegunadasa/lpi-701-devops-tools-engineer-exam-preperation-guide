@@ -8,7 +8,7 @@ This chapter provides a practical, enterprise-grade guide to telemetry, metrics 
 ## 1. Prometheus Architecture & Core Fundamentals
 
 Prometheus is an open-source systems monitoring and alerting toolkit built around a multidimensional data model, pull-based scraping over HTTP, and a time-series database (TSDB).
-![Metrics Endpoint](lpi-ex701-ch7-Metrics-Endpoint.jpeg)
+![Metrics Endpoint](img/lpi-ex701-ch7-Metrics-Endpoint.jpeg)
 
 ### 1.1 Data Model & Metric Types
 
