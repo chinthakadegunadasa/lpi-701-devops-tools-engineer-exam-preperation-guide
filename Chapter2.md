@@ -16,13 +16,13 @@ Source code versioning is the foundational pillar of modern DevOps pipelines. Th
  * **Git Submodules:** Links external Git repositories inside a parent repository at a specific commit hash pointer stored in .gitmodules. Submodules require explicit git submodule update commands to fetch contents.
  * **Git Subtree:** Merges sub-projects directly into the main repository's tree structure as standard directories. Eliminates external dependency fetching steps for end users at the expense of an enlarged main repository history.
 ### Hook Automation Lifecycle
- * **Client-Side Hooks:** Executed on local developer machines before actions like commits or pushes occur (e.g., pre-commit, prepare-commit-msg, pre-push). Often bypassed via --no-verify.
+ * **Client-Side Hooks:** Executed on
+ *  local developer machines before actions like commits or pushes occur (e.g., pre-commit, prepare-commit-msg, pre-push). Often bypassed via --no-verify.
  * **Server-Side Hooks:** Executed on central server endpoints (e.g., pre-receive, update, post-receive). Enforce non-bypassable policies such as authorization, branch protection rules, commit formatting, secret detection, and automated trigger payloads.
 ## 2. Real-World Production Scenario
 ### System Under Outage
 A critical memory leak and credential leak have reached the main branch of an enterprise microservices engine across a history spanning over 500+ commits. Simultaneously, multiple developer teams report severe branch drift and conflicting release topologies during an emergency hotfix deployment.
-![Compromised Linear topology](img/lpi-ex701-ch2-compromised-linear-topology-and-history-drift.jpeg) 
-
+![Compromised Linear Topology and History Drift](img/lpi-ex701-ch2-compromised-linear-topology-and-history-drift.jpeg)
 ### Architectural Objectives
  1. Use git bisect with automated regression scripts to find the breaking commit across 500+ updates.
  2. Recover accidentally dropped production hotfix commits using git reflog.
