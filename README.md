@@ -82,7 +82,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part IV: Continuous Integration & Continuous Delivery (CI/CD) (Weight 12)
 
 ### Topic 704: CI/CD Pipelines & Service Integration
-- **[704.1 Continuous Integration with Jenkins](Chapter7.md))**
+- **[704.1 Continuous Integration with Jenkins](Chapter7.md)**
   - **Theory & Objectives:** Jenkins Architecture (Master/Controller vs. Agents/Executors), Declarative vs. Scripted Pipelines, Jenkinsfile Syntax, Shared Libraries, Credentials Management, Plugins Ecosystem, Webhooks Integration.
   - **Real-World Scenario 4.1:** Diagnosing and Repairing a Broken Automated CI/CD Deployment Pipeline Blocking Production Hotfixes.
   - **Hands-On Lab 4.1:**
@@ -92,7 +92,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Jenkinsfile Directives (`pipeline`, `agent`, `stages`, `post`, `environment`, `options`, `when`, `matrix`).
   - **Scenario Review & Self-Assessment:** Troubleshooting Build Failures, Flaky Test Resolution, and Exam-Style Practice Questions.
 
-- **[704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions](Chapter6.md)**
+- **[704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions](Chapter8.md)**
   - **Theory & Objectives:** `.gitlab-ci.yml` Structure, Runners, Executors, Stages, Artifacts, Caching, Environment Variables, GitHub Actions Workflow Syntax (`.github/workflows`), Runners, Actions, Secret Management.
   - **Real-World Scenario 4.2:** Migrating a Legacy Monolithic Enterprise Build System to a Distributed GitHub Actions / GitLab CI Matrix Build Environment.
   - **Hands-On Lab 4.2:**
