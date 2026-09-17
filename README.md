@@ -94,7 +94,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Jenkinsfile Directives (`pipeline`, `agent`, `stages`, `post`, `environment`, `options`, `when`, `matrix`).
   - **Scenario Review & Self-Assessment:** Troubleshooting Build Failures, Flaky Test Resolution, and Exam-Style Practice Questions.
 
-- **[704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions]((Chapter5.md))**
+- **[704.2 Pipeline Automation with GitLab CI/CD & GitHub Actions](Chapter6.md)**
   - **Theory & Objectives:** `.gitlab-ci.yml` Structure, Runners, Executors, Stages, Artifacts, Caching, Environment Variables, GitHub Actions Workflow Syntax (`.github/workflows`), Runners, Actions, Secret Management.
   - **Real-World Scenario 4.2:** Migrating a Legacy Monolithic Enterprise Build System to a Distributed GitHub Actions / GitLab CI Matrix Build Environment.
   - **Hands-On Lab 4.2:**
@@ -109,7 +109,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## Part V: Monitoring, Metrics, & Log Analytics (Weight 11)
 
 ### Topic 705: System Monitoring & Logging Infrastructure
-- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)]((Chapter6.md))**
+- **[705.1 Metrics Collection & Visualization (Prometheus & Grafana)](Chapter7.md))**
   - **Theory & Objectives:** Pull vs. Push Metrics Architecture, Prometheus Server, Exporters (Node Exporter, cAdvisor), PromQL Queries, Time-Series Data, Alertmanager, Grafana Dashboards & Data Sources.
   - **Real-World Scenario 5.1:** Investigating an Intermittent Production Service Latency Spike using Prometheus Metrics and Grafana Dashboard Analytics.
   - **Hands-On Lab 5.1:**
@@ -120,7 +120,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** PromQL Syntax Guide, Alertmanager Routing Configuration Rules.
   - **Scenario Review & Self-Assessment:** Resolving Missing Metrics, Exporter Scrape Failures, and Exam-Style Practice Questions.
 
-- **705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)**
+- **705.2 Log Management & Analysis (ELK Stack / OpenSearch & Vector/Fluentd)(Chapter8.md)**
   - **Theory & Objectives:** Centralized Logging Topologies, Elasticsearch/OpenSearch indexing, Logstash Pipelines, Kibana Visualizations, Beats Filebeat/Metricbeat, Fluentd/Fluent Bit Log Shippers.
   - **Real-World Scenario 5.2:** Root Cause Analysis of an Application Ingress Crash using Centralized Log Aggregation and Correlation.
   - **Hands-On Lab 5.2:**
