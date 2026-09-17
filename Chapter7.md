@@ -2,26 +2,13 @@
 
 This chapter provides a practical, enterprise-grade guide to telemetry, metrics aggregation, time-series querying, and visual dashboards using Prometheus and Grafana. It covers the pull-based metrics model, Exporter deployment, PromQL querying, Alertmanager routing, and Grafana dashboard-as-code automation.
 
+
 ---
 
 ## 1. Prometheus Architecture & Core Fundamentals
 
 Prometheus is an open-source systems monitoring and alerting toolkit built around a multidimensional data model, pull-based scraping over HTTP, and a time-series database (TSDB).
-
-```text
-               +--------------------+
-               | Node / Web / DB    |
-               |  Metrics Endpoint  |
-               +--------------------+
-                          ^
-                          | HTTP Pull (/metrics)
-                          v
-+------------------+   +--------------------+   +-------------------+
-|  Alertmanager    |<- | Prometheus Server  |   | Grafana Dashboard |
-| (Routes/Alerts)  |   | (TSDB & PromQL)    |-->|  (Visualization)  |
-+------------------+   +--------------------+   +-------------------+
-
-```
+![Metrics Endpoint](lpi-ex701-ch7-Metrics-Endpoint.jpeg)
 
 ### 1.1 Data Model & Metric Types
 
