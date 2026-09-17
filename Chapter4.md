@@ -382,27 +382,7 @@ D. `kube-scheduler`
 
 * **Correct Answer:** **D**
 * **Explanation:** The `kube-scheduler` monitors the `kube-apiserver` for unassigned Pods and selects worker nodes for them based on resource requests, taints/tolerations, affinity rules, and node availability. `kube-controller-manager` handles state controllers, `kube-apiserver` serves API requests, and `etcd` stores cluster state.
-                    
-                    +-------------------------------------------------+
-                    |       Container Orchestration Architectures     |
-                    +-------------------------------------------------+
-                                            |
-                +---------------------------+---------------------------+
-                |                                                       |
-                v                                                       v
-   +--------------------------+                               +-------------------+
-   |   Docker Swarm Engine    |                               |    Kubernetes     |
-   | (Raft Consensus & Tasks) |                               | Control Plane     |
-   +--------------------------+                               +-------------------+
-                |                                                       |
-         +------+------+                                         +------+------+
-         |             |                                         |             |
-         v             v                                         v             v
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   | Manager / | | Overlay   |                             | Kube-     | | Pods,     |
-   | Worker    | | Routing   |                             | API /     | | Services  |
-   | Nodes     | | Mesh      |                             | etcd      | | & Deploy  |
-   +-----------+ +-----------+                             +-----------+ +-----------+
+![Container Orchestration Architectures](img/lpi-ex701-ch4-container-orchestration-architectures.jpeg)         
 
 ### Container Orchestration Architectures Diagram explained
 
@@ -459,28 +439,8 @@ The lower tier of the diagram shows the fundamental building blocks used by each
 * **Pod:** The smallest deployable unit in Kubernetes (wrapping one or more containers).
 * **Service:** An abstract way to expose an application running on a set of Pods as a network service (providing stable networking and load balancing).
 * **Deployment:** A controller that provides declarative updates for Pods and ReplicaSets (handling rolling updates and scaling).
+![Container Orchestration Architectures](img/lpi-ex701-ch4-container-orchestration-architectures.jpeg)
 
-                    +-------------------------------------------------+
-                    |       Container Orchestration Architectures     |
-                    +-------------------------------------------------+
-                                            |
-                +---------------------------+---------------------------+
-                |                                                       |
-                v                                                       v
-   +--------------------------+                               +-------------------+
-   |   Docker Swarm Engine    |                               |    Kubernetes     |
-   | (Raft Consensus & Tasks) |                               | Control Plane     |
-   +--------------------------+                               +-------------------+
-                |                                                       |
-         +------+------+                                         +------+------+
-         |             |                                         |             |
-         v             v                                         v             v
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   | Manager / | | Overlay   |                             | Kube-     | | Pods,     |
-   | Worker    | | Routing   |                             | API /     | | Services  |
-   | Nodes     | | Mesh      |                             | etcd      | | & Deploy  |
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   
 ### Container Orchestration Architectures Diagram explained
 
 This text-based diagram illustrates a comparative overview of the two major container orchestration architectures covered in the LPIC-701 exam: **Docker Swarm** and **Kubernetes**.
@@ -536,33 +496,11 @@ The lower tier of the diagram shows the fundamental building blocks used by each
 * **Pod:** The smallest deployable unit in Kubernetes (wrapping one or more containers).
 * **Service:** An abstract way to expose an application running on a set of Pods as a network service (providing stable networking and load balancing).
 * **Deployment:** A controller that provides declarative updates for Pods and ReplicaSets (handling rolling updates and scaling).
-                    
-                    +-------------------------------------------------+
-                    |       Container Orchestration Architectures     |
-                    +-------------------------------------------------+
-                                            |
-                +---------------------------+---------------------------+
-                |                                                       |
-                v                                                       v
-   +--------------------------+                               +-------------------+
-   |   Docker Swarm Engine    |                               |    Kubernetes     |
-   | (Raft Consensus & Tasks) |                               | Control Plane     |
-   +--------------------------+                               +-------------------+
-                |                                                       |
-         +------+------+                                         +------+------+
-         |             |                                         |             |
-         v             v                                         v             v
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   | Manager / | | Overlay   |                             | Kube-     | | Pods,     |
-   | Worker    | | Routing   |                             | API /     | | Services  |
-   | Nodes     | | Mesh      |                             | etcd      | | & Deploy  |
-   +-----------+ +-----------+                             +-----------+ +-----------+
-   
+![Container Orchestration Architectures](img/lpi-ex701-ch4-container-orchestration-architectures.jpeg)
+       
 This text-based architecture diagram provides a simplified, comparative overview of the two primary container orchestration ecosystems covered by the LPIC-701 exam objectives: **Docker Swarm** and **Kubernetes**.
 
 The diagram visualizes how these systems differ structurally, moving from the high-level management engine down to the operational nodes and functional primitives.
-
----
 
 ### Tier 1: Core Orchestration Engines
 
