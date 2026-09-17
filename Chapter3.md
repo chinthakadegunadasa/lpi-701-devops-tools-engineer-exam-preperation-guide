@@ -28,29 +28,7 @@ Docker and container virtualization form a core component of the LPIC DevOps Too
 ## 2. Real-World Production Scenario
 ### System Under Hardening
 An enterprise Node.js microservice image is deployed in production using a single-stage build. The container runs as root, packages unnecessary OS build tools (gcc, make, python), weighs 1.8 GB, contains critical CVE vulnerabilities, and lacks container resource limits.
-!Vulnerable Legacy Build](img/(lpi-ex701-ch3-vulnerable-legacy-build.jpeg)
-
-```
-[ Vulnerable Legacy Build: 1.8 GB ]
-+-----------------------------------------------------------------+
-| Node.js App Base Image (Ubuntu/Debian full OS dependencies)      |
-|  - Runs as `root` user                                           |
-|  - Contains build tools (gcc, make) and unneeded packages       |
-|  - Unlimited CPU & Memory usage                                 |
-+-----------------------------------------------------------------+
-                                  |
-                                  |  OPTIMIZATION & HARDENING PIPELINE
-                                  v
-[ Hardened Production Image: 45 MB ]
-+-----------------------------------------------------------------+
-| Multi-Stage Alpine/Distroless Runtime Container                 |
-|  - Non-root unprivileged process context (`node` user)          |
-|  - Unneeded toolchains discarded in build stage                 |
-|  - Memory & CPU resource limits enforced in Compose             |
-|  - Read-only root filesystem enabled                            |
-+-----------------------------------------------------------------+
-
-```
+![Vulnerable Legacy Build](img/(lpi-ex701-ch3-vulnerable-legacy-build.jpeg)
 ### Architectural Objectives
  1. Construct a hardened multi-stage Dockerfile that drops image size from ~1.8 GB to ~45 MB and strips non-essential build packages.
  2. Execute container runtimes under an unprivileged user context (UID 10001).
