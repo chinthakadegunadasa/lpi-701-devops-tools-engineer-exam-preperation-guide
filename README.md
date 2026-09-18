@@ -41,7 +41,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
   - **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
 
-- **Chapter 4: [702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
+- ** [Chapter 4: 702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
   - **Theory & Objectives:** Clustering Architecture, Manager/Worker Nodes, Raft Consensus, Service Scaling, Rolling Updates, Secrets Management, Ingress Routers (Traefik/Nginx), Pods, Services, Deployments, ConfigMaps.
   - **Real-World Scenario 2.2:** High-Availability Cluster Outage Recovery — Migrating Services and Zero-Downtime Rolling Upgrades under Heavy Traffic Load.
   - **Hands-On Lab 2.2:**
