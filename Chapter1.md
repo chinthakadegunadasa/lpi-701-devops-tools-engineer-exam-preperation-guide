@@ -60,6 +60,7 @@ Create a dedicated project directory:
 mkdir -p devops-701-lab1 && cd devops-701-lab1
 
 ```
+
 ### Step 1: Externalizing Session State & Writing Stateless Application Code
 
 Create a stateless Python application (app.py) using Flask and Redis for decoupled session handling:
@@ -100,8 +101,8 @@ if __name__ == '__main__':
     # Port binding via app configuration
     port = int(os.getenv('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
-
 ```
+
 ### Step 2: Decoupling Database Schema Migrations
 
 Create an isolated, idempotent schema migration runner (migrate.py) to manage database schema updates independently:
@@ -136,7 +137,7 @@ def run_migrations():
             email VARCHAR(255) NOT NULL UNIQUE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
-        """
+       
         cursor.execute(migration_sql)
         conn.commit()
         print("SUCCESS: Database schema migrations applied successfully.")
@@ -150,6 +151,7 @@ if __name__ == '__main__':
     run_migrations()
 
 ```
+
 ### Step 3: Containerizing for Immutable Infrastructure
 
 Create a multi-stage Dockerfile to produce lightweight container images with minimal attack surfaces:
@@ -184,7 +186,6 @@ USER devops
 EXPOSE 8080
 
 ENTRYPOINT ["python", "app.py"]
-
 ```
 
 Create the requirements.txt manifest:
@@ -193,7 +194,6 @@ Create the requirements.txt manifest:
 Flask==3.0.0
 redis==5.0.1
 psycopg2-binary==2.9.9
-
 ```
 
 ### Step 4: Orchestrating the Stateless Stack with Docker Compose
@@ -374,6 +374,6 @@ D. Compile session management state into the Docker container image layer.
    
 #### Question 2
 
- * **Correct Answer:** **C**"
+ * **Correct Answer:** **C**
    
  * **Explanation:** Stateless application containers must not store session state locally. Storing session data in an external backing store like Redis ensures any application container can serve any incoming request, enabling seamless horizontal autoscaling. Sticky sessions (Choice A) create state coupling at the network layer and reduce fault tolerance. Options B and D violate container immutability and statelessness principles.
