@@ -203,7 +203,9 @@ git log --oneline -n 1
 
 ```
 *Expected Output:* Shows the restored commit message.
+
 ## 5. Command & Tool Quick Reference
+![Command & Tool Quick Reference](img/lpi-ex701-ch2-Command-and-Tool-Quick-Reference.jpeg)
 | Command / Flag | Purpose / Objective | Example Usage |
 |---|---|---|
 | git rebase -i <commit-ish> | Interactively modify, squash, reorder, or drop commit history. | git rebase -i HEAD~5 |
