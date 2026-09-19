@@ -336,6 +336,8 @@ curl -X POST http://localhost:8080/session/visit
 
 ## 5. Command & Tool Quick Reference
 
+![ Command & Tool Quick Reference](img/lpi-ex701-ch1-Command-and-Tool-Quick-Reference.jpeg)
+
 | Command / Flag | Purpose / Objective | Example Usage |
 |---|---|---|
 | docker compose up --build | Builds immutable images and starts declared services. | docker compose up --build -d |
