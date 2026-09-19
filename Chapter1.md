@@ -343,17 +343,25 @@ curl -X POST http://localhost:8080/session/visit
 ### Question 1
 
 An organization needs to update its database schema during a deployment. Under modern DevOps practices and the 12-Factor App methodology, which approach should be implemented?
+
 A. Write inline code within the application startup sequence that executes database migrations on process boot.
+
 B. Execute database schema migrations as a decoupled, isolated administrative step prior to running the new application version.
+
 C. Connect directly to the production database via an SSH tunnel and manually apply DDL statements while traffic is active.
+
 D. Rebuild the database image with the new schema embedded and replace the production database container without persistent storage.
 
 ### Question 2
 
 When migrating a monolithic web application to a stateless containerized runtime, how should user session data be handled to support horizontal scaling?
+
 A. Enable sticky sessions on the load balancer to route each client to the same container instance.
+
 B. Store session data in the container's local /tmp directory using ephemeral file storage.
+
 C. Offload session state to an external, high-performance backing store like Redis or Memcached.
+
 D. Compile session management state into the Docker container image layer.
 
 ### Answer Key & Explanations
