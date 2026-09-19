@@ -256,39 +256,42 @@ services:
         condition: service_healthy
       schema-migration:
         condition: service_completed_successfully
-
 ```
+
 ## 4. Verification & Validation Steps
 
 ### 1. Build and Launch the Stack
 
 Run the container environment using Docker Compose:
+
 ```bash
 docker compose up --build -d
-
 ```
+
 ### 2. Verify Decoupled Schema Migration Execution
 
 Confirm that the migration job ran independently to completion without disrupting application deployment:
 
 ```bash
 docker compose logs schema-migration
-
 ```
+
 *Expected Output:*
 ```text
 Connecting to database for schema migration...
 SUCCESS: Database schema migrations applied successfully.
-
 ```
+
 ### 3. Test Application Health Endpoint
+
 Query the /healthz endpoint to confirm backing store connections:
+
 ```bash
 curl -i http://localhost:8080/healthz
-
 ```
 
 *Expected Output:*
+
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -299,33 +302,36 @@ Content-Type: application/json
   },
   "status": "HEALTHY"
 }
-
 ```
+
 ### 4. Validate Session Persistence Across Containers
 
 Simulate traffic to verify stateless session tracking in Redis:
+
 ```bash
 curl -X POST http://localhost:8080/session/visit
 curl -X POST http://localhost:8080/session/visit
-
 ```
+
 *Expected Output:*
+
 ```json
 {
   "storage": "redis-external",
   "total_visits": 2,
   "user": "user_default"
 }
-
 ```
+
 ### 5. Verify Immutability by Restarting Application Containers
 
 Destroy and recreate the web application container:
+
 ```bash
 docker compose restart web-application
 curl -X POST http://localhost:8080/session/visit
-
 ```
+
 *Result:* The counter increments to 3, confirming that state is fully decoupled from the container runtime.
 
 ## 5. Command & Tool Quick Reference
