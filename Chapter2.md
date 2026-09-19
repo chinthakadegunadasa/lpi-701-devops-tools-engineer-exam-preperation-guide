@@ -1,23 +1,33 @@
 # Chapter 2: 701.2 Source Code & Version Control Systems (Git)
+
 ## 1. Objective Architecture & Theoretical Foundations
 Source code versioning is the foundational pillar of modern DevOps pipelines. This section covers advanced Git architecture, repository maintenance strategies, branching strategies, and programmatic hook automation required for the LPIC DevOps Tools Engineer (Exam 701) certification.
 
 ![Git Workflows](img/lpi-ex701-ch2-git-workflows-and-architecture.jpeg)
 
 ### Advanced Git Workflows
+
  * **Trunk-Based Development:** Developers merge small, frequent updates directly into a core single branch (main or trunk). Requires robust automated CI test gates, short-lived feature branches, and feature flags to decouple deployment from release.
  * **GitFlow Strategy:** Uses strict branching conventions: explicit long-lived branches (main, develop) alongside temporary supporting branches (feature/*, release/*, hotfix/*). Best suited for scheduled, versioned software releases.
+ * 
  * **Rebase vs. Merge:**
+   
    * git merge: Combines divergent histories by creating a 3-way merge commit. Preserves exact historical topology but can clutter commit logs.
    * git rebase: Replaces upstream commits under feature commits, rewriting history to produce a linear timeline. *Rule:* Never rebase public or shared commits.
+     
 ### Deep Internal Inspection & Recovery
+
  * **Git Reflog (git reflog):** Tracks every reference update made to local branch heads (commits, checkouts, resets, rebasing). Serves as a recovery engine for lost commits, detached HEAD states, or accidental destructive resets (git reset --hard).
  * **Git Bisect (git bisect):** Uses binary search algorithms across commit histories to locate the exact commit that introduced a regression or bug.
  * **Git Worktree (git worktree):** Enables mounting multiple working trees connected to the same repository database. Allows developers to check out and test multiple branches simultaneously without stashing or switching branches.
+   
 ### Repository Component Modularization
+
  * **Git Submodules:** Links external Git repositories inside a parent repository at a specific commit hash pointer stored in .gitmodules. Submodules require explicit git submodule update commands to fetch contents.
  * **Git Subtree:** Merges sub-projects directly into the main repository's tree structure as standard directories. Eliminates external dependency fetching steps for end users at the expense of an enlarged main repository history.
+   
 ### Hook Automation Lifecycle
+
  * **Client-Side Hooks:** Executed on
  *  local developer machines before actions like commits or pushes occur (e.g., pre-commit, prepare-commit-msg, pre-push). Often bypassed via --no-verify.
  * **Server-Side Hooks:** Executed on central server endpoints (e.g., pre-receive, update, post-receive). Enforce non-bypassable policies such as authorization, branch protection rules, commit formatting, secret detection, and automated trigger payloads.
@@ -45,7 +55,6 @@ mkdir -p devops-701-git-lab && cd devops-701-git-lab
 git init .
 git config user.name "DevOps Engineer"
 git config user.email "devops@example.com"
-
 ```
 
 ### Step 1: Setting Up Pre-Commit & Server-Side Security Hooks
@@ -78,7 +87,6 @@ if [ -n "$staged_py_files" ]; then
 fi
 
 exit 0
-
 ```
 
 Make the hook executable:
@@ -157,7 +165,6 @@ git log --oneline -n 3
 
 # Inspect reference logs to identify lost commit hash
 git reflog
-
 ```
 
 Locate the target commit hash prior to the reset (e.g., HEAD@{1}) and restore history:
