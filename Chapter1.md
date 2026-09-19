@@ -40,6 +40,7 @@ This topic addresses the core concepts of modern application design, cloud-nativ
 ### System Under Migration
 
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
+
 ![Legacy to Cloudnative](img/lpi-ex701-ch1-legacy-to-cloudnative.jpeg)
 
 ### Architectural Objectives
@@ -54,6 +55,7 @@ An enterprise platform suffers from high latency, frequent deployment downtime, 
 ### Lab Environment Setup
 
 Create a dedicated project directory:
+
 ```bash
 mkdir -p devops-701-lab1 && cd devops-701-lab1
 
