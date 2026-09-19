@@ -1,10 +1,13 @@
 # Chapter 1: 701.1 Principles of Software Development & DevOps Best Practices
+
 ## 1. Objective Architecture & Theoretical Foundations
+
 This topic addresses the core concepts of modern application design, cloud-native architecture, and operational practices required for the LPI DevOps Tools Engineer (Exam 701) certification.
 
 ![Cloud Native Application](img/lpi-ex701-ch1-cloud-native-application-operations-framework.jpeg) 
 
 ### 12-Factor App Methodology
+
  * **Codebase:** One repository tracked in version control per application, with multiple deployments (dev, staging, production) originating from identical code assets.
  * **Dependencies:** Explicitly declare and isolate dependencies using explicit manifest locks (e.g., package-json.lock, Pipfile.lock) rather than relying on implicit system-level packages.
  * **Config:** Store configuration variables that vary across environments (database URIs, API tokens) strictly in environment variables, completely separated from code.
@@ -21,31 +24,44 @@ This topic addresses the core concepts of modern application design, cloud-nativ
  * **Monolithic Architecture:** Combines business logic, data access, and UI layers into a single deployment artifact. Scales vertically; deployment requires rebuilding and redeploying the entire codebase.
  * **Microservices Architecture:** Decomposes systems into autonomous, loosely coupled services communicating via lightweight protocols (gRPC, REST/JSON). Services scale independently, support isolated technology stacks, and minimize failure blast radiuses.
  * **Migration Risks:** Breaking down monoliths risks network latency overhead, complex distributed tracing requirements, eventual consistency trade-offs (BASE vs. ACID), and service discovery management issues.
+   
 ### Data Persistence, State & Session Handling
+
  * **Stateless Runtimes:** Application containers must remain stateless to enable instant scaling, migration, and replacement without losing user state.
  * **Externalized Sessions:** Sticky sessions tied to specific server IP addresses hinder horizontal autoscaling. Session state should be stored in high-performance external key-value stores like Redis or Memcached.
  * **Database Schema Migrations:** Database modifications must remain backward-compatible to support zero-downtime deployments. Schema migrations must run using version-controlled, idempotent scripts executed separately from application boot cycles.
+   
 ### Immutable Infrastructure & GitOps
+
  * **Immutable Infrastructure:** Server instances or container runtimes are never modified in-place post-deployment. Infrastructure updates require building a new image, deploying it alongside the old instance, and terminating the obsolete version.
  * **GitOps:** Uses Git repositories as the single source of truth for infrastructure and application declarations. Automated operators reconcile state drift between the desired architecture stored in Git and the actual runtime environment.
 ## 2. Real-World Production Scenario
+
 ### System Under Migration
+
 An enterprise platform suffers from high latency, frequent deployment downtime, and deployment friction. The monolithic system uses server-bound PHP sessions and executes inline raw SQL database migrations during application startup, causing database lockups during traffic spikes.
 ![Legacy to Cloudnative](img/lpi-ex701-ch1-legacy-to-cloudnative.jpeg)
+
 ### Architectural Objectives
+
  1. Decouple session management into an external Redis layer.
  2. Isolate schema modifications from the application binary lifecycle using decoupled migration scripts.
  3. Enforce 12-Factor principles by passing runtime configurations strictly via environment variables.
  4. Containerize the application into stateless, immutable Docker runtimes.
+    
 ## 3. Hands-On Step-by-Step Implementation Lab
+
 ### Lab Environment Setup
+
 Create a dedicated project directory:
 ```bash
 mkdir -p devops-701-lab1 && cd devops-701-lab1
 
 ```
 ### Step 1: Externalizing Session State & Writing Stateless Application Code
+
 Create a stateless Python application (app.py) using Flask and Redis for decoupled session handling:
+
 ```python
 import os
 import redis
@@ -54,6 +70,7 @@ from flask import Flask, session, jsonify
 app = Flask(__name__)
 
 # 12-Factor Configuration: Read backing service connections from environment
+
 app.config['SECRET_KEY'] = os.getenv('APP_SECRET_KEY', 'default-dev-key-change-in-prod')
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
 REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
@@ -84,7 +101,9 @@ if __name__ == '__main__':
 
 ```
 ### Step 2: Decoupling Database Schema Migrations
+
 Create an isolated, idempotent schema migration runner (migrate.py) to manage database schema updates independently:
+
 ```python
 import os
 import sys
@@ -130,6 +149,7 @@ if __name__ == '__main__':
 
 ```
 ### Step 3: Containerizing for Immutable Infrastructure
+
 Create a multi-stage Dockerfile to produce lightweight container images with minimal attack surfaces:
 ```dockerfile
 # Stage 1: Build & Dependencies
@@ -171,6 +191,7 @@ psycopg2-binary==2.9.9
 
 ```
 ### Step 4: Orchestrating the Stateless Stack with Docker Compose
+
 Define the multi-service deployment spec in docker-compose.yml:
 ```yaml
 version: '3.8'
@@ -231,14 +252,18 @@ services:
 
 ```
 ## 4. Verification & Validation Steps
+
 ### 1. Build and Launch the Stack
+
 Run the container environment using Docker Compose:
 ```bash
 docker compose up --build -d
 
 ```
 ### 2. Verify Decoupled Schema Migration Execution
+
 Confirm that the migration job ran independently to completion without disrupting application deployment:
+
 ```bash
 docker compose logs schema-migration
 
@@ -255,6 +280,7 @@ Query the /healthz endpoint to confirm backing store connections:
 curl -i http://localhost:8080/healthz
 
 ```
+
 *Expected Output:*
 ```http
 HTTP/1.1 200 OK
@@ -269,6 +295,7 @@ Content-Type: application/json
 
 ```
 ### 4. Validate Session Persistence Across Containers
+
 Simulate traffic to verify stateless session tracking in Redis:
 ```bash
 curl -X POST http://localhost:8080/session/visit
@@ -285,6 +312,7 @@ curl -X POST http://localhost:8080/session/visit
 
 ```
 ### 5. Verify Immutability by Restarting Application Containers
+
 Destroy and recreate the web application container:
 ```bash
 docker compose restart web-application
@@ -292,7 +320,9 @@ curl -X POST http://localhost:8080/session/visit
 
 ```
 *Result:* The counter increments to 3, confirming that state is fully decoupled from the container runtime.
+
 ## 5. Command & Tool Quick Reference
+
 | Command / Flag | Purpose / Objective | Example Usage |
 |---|---|---|
 | docker compose up --build | Builds immutable images and starts declared services. | docker compose up --build -d |
@@ -300,24 +330,36 @@ curl -X POST http://localhost:8080/session/visit
 | docker compose scale | Scales a stateless application service horizontally. | docker compose up -d --scale web-application=3 |
 | pg_isready | Database CLI utility used to check network readiness in health probes. | pg_isready -h localhost -p 5432 |
 | redis-cli ping | Redis CLI command verifying cache node operational status. | redis-cli -h 127.0.0.1 -p 6379 ping |
+
 ## 6. Exam-Style Self-Assessment Questions
+
 ### Question 1
+
 An organization needs to update its database schema during a deployment. Under modern DevOps practices and the 12-Factor App methodology, which approach should be implemented?
 A. Write inline code within the application startup sequence that executes database migrations on process boot.
 B. Execute database schema migrations as a decoupled, isolated administrative step prior to running the new application version.
 C. Connect directly to the production database via an SSH tunnel and manually apply DDL statements while traffic is active.
 D. Rebuild the database image with the new schema embedded and replace the production database container without persistent storage.
+
 ### Question 2
+
 When migrating a monolithic web application to a stateless containerized runtime, how should user session data be handled to support horizontal scaling?
 A. Enable sticky sessions on the load balancer to route each client to the same container instance.
 B. Store session data in the container's local /tmp directory using ephemeral file storage.
 C. Offload session state to an external, high-performance backing store like Redis or Memcached.
 D. Compile session management state into the Docker container image layer.
+
 ### Answer Key & Explanations
+
 #### Question 1
- * **Correct Answer:** **B**
+
+ * **Correct Answer:** **B**"
+   
  * **Explanation:** The 12-Factor App methodology dictates that administrative tasks (such as database migrations) should run as one-off processes in an isolated container context. Running migrations directly inside application boot routines (Choice A) creates race conditions when scaling out horizontally. Manual database changes (Choice C) violate automation principles, and Choice D causes data loss.
+   
 #### Question 2
- * **Correct Answer:** **C**
+
+ * **Correct Answer:** **C**"
+   
  * **Explanation:** Stateless application containers must not store session state locally. Storing session data in an external backing store like Redis ensures any application container can serve any incoming request, enabling seamless horizontal autoscaling. Sticky sessions (Choice A) create state coupling at the network layer and reduce fault tolerance. Options B and D violate container immutability and statelessness principles.
  
