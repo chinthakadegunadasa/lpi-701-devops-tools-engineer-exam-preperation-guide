@@ -170,24 +170,34 @@ In the interactive rebase interface editor:
 rm -f credentials.txt
 
 ```
+
 ## 4. Verification & Validation Steps
+
 ### 1. Test Client Pre-Commit Secret Scanner
+
 Attempt to stage and commit a hardcoded secret to test the pre-commit hook:
+
 ```bash
 echo 'SECRET_KEY = "SuperSecretUnsafeTokenVal"' >> bad_code.py
 git add bad_code.py
 git commit -m "test: commit unsafe secret"
 
 ```
+
 *Expected Output:*
+
 ```text
 ERROR: Hardcoded secret detected in staged files!
 Commit rejected by pre-commit hook.
 
 ```
+
 ### 2. Verify git bisect Automated Execution
+
 Verify that git bisect run cleanly pinpoints the bad commit:
+
 *Expected Output:*
+
 ```text
 ...
 f3a1b2c3d4e5 is the first bad commit
@@ -196,7 +206,9 @@ Author: DevOps Engineer <devops@example.com>
     feat(core): update data processor logic
 
 ```
+
 ### 3. Verify git reflog Recovery
+
 Confirm that dropped commit references are restored:
 ```bash
 git log --oneline -n 1
@@ -205,32 +217,47 @@ git log --oneline -n 1
 *Expected Output:* Shows the restored commit message.
 
 ## 5. Command & Tool Quick Reference
+
 ![Command & Tool Quick Reference](img/lpi-ex701-ch2-Command-and-Tool-Quick-Reference.jpeg)
-| Command / Flag | Purpose / Objective | Example Usage |
-|---|---|---|
-| git rebase -i <commit-ish> | Interactively modify, squash, reorder, or drop commit history. | git rebase -i HEAD~5 |
-| git reflog | Display local reference logs to trace and recover lost commits. | git reflog |
-| git bisect start/run | Automate binary search troubleshooting across commit history. | git bisect run ./test.sh |
-| git worktree add | Mount a separate working directory linked to the main repository. | git worktree add ../hotfix main |
-| git submodule update --init | Fetch and update nested submodule dependencies. | git submodule update --init --recursive |
+
 ## 6. Exam-Style Self-Assessment Questions
+
 ### Question 1
-A DevOps engineer needs to find which commit introduced a performance regression across a history of 400 commits. An automated test script (test.sh) returns 0 for good commits and 1 for bad commits. Which set of Git commands automates this search?
+
+A DevOps engineer needs to find which commit introduced a performance regression across a history of 400 commits. An automated test script (test.sh) 
+returns 0 for good commits and 1 for bad commits. Which set of Git commands automates this search?
+
 A. git bisect start -> git bisect bad HEAD -> git bisect good HEAD~400 -> git bisect run ./test.sh
+
 B. git rebase -i HEAD~400 -> execute ./test.sh on every squashed commit.
+
 C. git log --grep="bug" -> git checkout each matched commit to run ./test.sh.
+
 D. git reflog -> git reset --hard HEAD~400 -> execute ./test.sh.
+
 ### Question 2
+
 A developer accidentally executed git reset --hard HEAD~3 on their local branch, removing three commits needed for a release. The changes were not pushed to a remote repository. How can these commits be recovered?
+
 A. Run git checkout -b restore-branch origin/main to pull remote state.
+
 B. Use git reflog to locate the commit hash prior to the reset, then run git reset --hard <commit-hash>.
+
 C. Run git revert HEAD~3..HEAD to undo the hard reset.
+
 D. Restore the lost commits using git submodule update --force.
+
 ### Answer Key & Explanations
+
 #### Question 1
+
  * **Correct Answer:** **A**
- * **Explanation:** git bisect uses a binary search algorithm to locate breaking commits. Combining git bisect start, defining the bad and good boundary commits, and running git bisect run <script> automates searching without manually inspecting commits.
+   
+ * **Explanation:** git bisect uses a binary search algorithm to locate breaking commits. Combining git bisect start, defining the bad and good   boundary commits, and running git bisect run <script> automates searching without manually inspecting commits.
+   
 #### Question 2
+
  * **Correct Answer:** **B**
+   
  * **Explanation:** git reflog records local head movements, including resets and branch checkouts. Locating the pre-reset commit hash in the reflog and targeting it with git reset --hard <hash> restores the lost working tree state. git revert (Choice C) creates inverse commits for existing commits rather than recovering dropped local commits.
  
