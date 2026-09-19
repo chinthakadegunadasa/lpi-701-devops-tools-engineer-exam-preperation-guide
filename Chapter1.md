@@ -338,14 +338,6 @@ curl -X POST http://localhost:8080/session/visit
 
 ![ Command & Tool Quick Reference](img/lpi-ex701-ch1-Command-and-Tool-Quick-Reference.jpeg)
 
-| Command / Flag | Purpose / Objective | Example Usage |
-|---|---|---|
-| docker compose up --build | Builds immutable images and starts declared services. | docker compose up --build -d |
-| docker compose run --rm | Runs a one-off administrative task in an isolated container context. | docker compose run --rm web-application python migrate.py |
-| docker compose scale | Scales a stateless application service horizontally. | docker compose up -d --scale web-application=3 |
-| pg_isready | Database CLI utility used to check network readiness in health probes. | pg_isready -h localhost -p 5432 |
-| redis-cli ping | Redis CLI command verifying cache node operational status. | redis-cli -h 127.0.0.1 -p 6379 ping |
-
 ## 6. Exam-Style Self-Assessment Questions
 
 ### Question 1
@@ -377,4 +369,3 @@ D. Compile session management state into the Docker container image layer.
  * **Correct Answer:** **C**"
    
  * **Explanation:** Stateless application containers must not store session state locally. Storing session data in an external backing store like Redis ensures any application container can serve any incoming request, enabling seamless horizontal autoscaling. Sticky sessions (Choice A) create state coupling at the network layer and reduce fault tolerance. Options B and D violate container immutability and statelessness principles.
- 
