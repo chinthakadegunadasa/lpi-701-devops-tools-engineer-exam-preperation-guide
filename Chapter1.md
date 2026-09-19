@@ -153,6 +153,7 @@ if __name__ == '__main__':
 ### Step 3: Containerizing for Immutable Infrastructure
 
 Create a multi-stage Dockerfile to produce lightweight container images with minimal attack surfaces:
+
 ```dockerfile
 # Stage 1: Build & Dependencies
 FROM python:3.11-slim AS builder
@@ -185,16 +186,20 @@ EXPOSE 8080
 ENTRYPOINT ["python", "app.py"]
 
 ```
+
 Create the requirements.txt manifest:
+
 ```text
 Flask==3.0.0
 redis==5.0.1
 psycopg2-binary==2.9.9
 
 ```
+
 ### Step 4: Orchestrating the Stateless Stack with Docker Compose
 
 Define the multi-service deployment spec in docker-compose.yml:
+
 ```yaml
 version: '3.8'
 
