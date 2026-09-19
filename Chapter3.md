@@ -275,40 +275,53 @@ Content-Type: application/json
 {"status":"HEALTHY","timestamp":"..."}
 
 ```
+
 Check real-time system resource utilization to verify cgroup resource enforcement:
+
 ```bash
 docker stats --no-stream hardened-app edge-proxy
 ```
 
 ## 5. Command & Tool Quick Reference
 
-
-| Command / Flag | Purpose / Objective | Example Usage |
-|---|---|---|
-| docker build --target | Builds an image up to a specific intermediate stage defined in a multi-stage Dockerfile. | docker build --target builder -t app:build . |
-| docker system prune -a --volumes | Removes unused container data, networks, stopped containers, and unreferenced volumes. | docker system prune -a --volumes |
-| docker inspect --format | Extracts specific metadata attributes from container JSON manifests using Go templates. | docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hardened-app |
-| docker run --read-only | Mounts the root filesystem of the container as read-only. | docker run --read-only --tmpfs /tmp microservice:v1.0.0 |
-| docker stats | Displays a live stream of container resource consumption statistics (CPU, memory, I/O). | docker stats hardened-app |
+![Command & Tool Quick Reference](lpi-ex701-ch3-Command-and-Tool-Quick-Reference.jpeg)
 
 ## 6. Exam-Style Self-Assessment Questions
+
 ### Question 1
+
 A DevOps engineer needs to build an efficient Docker container image for a compiled Go application. The application requires build dependencies (golang SDK) during compilation, but the final production runtime needs only the compiled binary executable. Which strategy minimizes the final production image size while maintaining single-command build functionality?
+
 A. Write two separate Dockerfiles (Dockerfile.build and Dockerfile.run) and use a host shell script to copy the compiled binary between images.
+
 B. Author a multi-stage Dockerfile using FROM golang AS builder for compilation, and FROM scratch or FROM alpine for the final stage, copying the binary using COPY --from=builder.
+
 C. Use a standard golang base image and run apt-get remove --purge golang at the end of the RUN instruction chain.
+
 D. Compile the binary on the developer's local workstation OS and use COPY to move it into a node:latest container image.
+
 ### Question 2
+
 When using the default overlay2 storage driver in Docker on a Linux system, where does Docker locate and store container layer data and volume storage by default?
+
 A. /etc/docker/daemon.json
+
 B. /usr/local/bin/docker/storage/
+
 C. /var/lib/docker/
+
 D. /opt/containerd/overlay2/
+
 ### Answer Key & Explanations
+
 #### Question 1
- * **Correct Answer:** **B**
- * **Explanation:** Multi-stage builds allow developers to use large base images containing compilers and SDKs in earlier stages, then copy *only* the resulting compiled binaries into a minimal base runtime stage (scratch or alpine). This reduces image size and eliminates unnecessary build tools from production environments. Choice A works but breaks single-file build conventions, and Choice C fails to recover disk space because deleted files remain stored in prior image layers.
-#### Question 2
- * **Correct Answer:** **C**
- * **Explanation:** Docker's default root storage directory on Linux hosts is /var/lib/docker/. This directory stores container layers, volumes, images, and runtime driver states (including Overlay2 structures under /var/lib/docker/overlay2).
  
+ * **Correct Answer:** **B**
+ 
+ * **Explanation:** Multi-stage builds allow developers to use large base images containing compilers and SDKs in earlier stages, then copy *only* the resulting compiled binaries into a minimal base runtime stage (scratch or alpine). This reduces image size and eliminates unnecessary build tools from production environments. Choice A works but breaks single-file build conventions, and Choice C fails to recover disk space because deleted files remain stored in prior image layers.
+
+#### Question 2
+
+ * **Correct Answer:** **C**
+
+ * **Explanation:** Docker's default root storage directory on Linux hosts is /var/lib/docker/. This directory stores container layers, volumes, images, and runtime driver states (including Overlay2 structures under /var/lib/docker/overlay2).
