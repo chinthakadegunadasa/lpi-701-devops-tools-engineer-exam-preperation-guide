@@ -15,8 +15,8 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 
 ### Topic 701: Modern Software Development & DevOps Principles
 
-- **[Chapter 1: Principles of Software Development & DevOps Best Practices](Chapter1.md)**
-- 
+- **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
+  
   - **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
   - **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck — Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
   - **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
