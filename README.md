@@ -27,9 +27,9 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   1. **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolut*ion.
   2. **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
   3. **Hands-On Lab 1.2:**
-     3.1. Lab 1.2.1: Setting up Pre-Commit and Pre-Push Server-Side Hooks for Automated Linting and Secret Detection.
-     3.2. Lab 1.2.2: Utilizing `git bisect` to Isolate a Memory Leak Introduced Across 500+ Commits.
-     3.3. Lab 1.2.3: Managing Complex Multi-Repository Dependencies using Git Submodules and `git subtree`.
+     - Lab 1.2.1: Setting up Pre-Commit and Pre-Push Server-Side Hooks for Automated Linting and Secret Detection.
+     - Lab 1.2.2: Utilizing `git bisect` to Isolate a Memory Leak Introduced Across 500+ Commits.
+     - Lab 1.2.3: Managing Complex Multi-Repository Dependencies using Git Submodules and `git subtree`.
   4. **Command & Syntax Reference:** Deep Dive into `git cherry-pick`, `git rebase -i`, `git reflog`, `git worktree`.
   5. **Scenario Review & Self-Assessment:** Resolving Complex Three-Way Merge Conflicts and Exam-Style Practice Questions.
 
@@ -42,11 +42,11 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   1. **Theory & Objectives:** OCI Specifications, Linux Namespaces & cgroups, Docker Engine Architecture, Multistage Builds, Storage Drivers, Networking Modes (Bridge, Host, Overlay, Macvlan), Docker Compose.
   2. **Real-World Scenario 2.1:** Hardening and Optimizing a Vulnerable, Bloated Node.js/Python Enterprise Image (Reducing Image Size from 1.8GB to 45MB while Eliminating CVEs).
   3. **Hands-On Lab 2.1:**
-     3.1. Lab 2.1.1: Authoring Secure Multi-Stage Dockerfiles with Non-Root Users and Minimal Base Images (Distroless/Alpine).
-     3.2. Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
-    - Lab 2.1.3: Designing Multi-Service Stacks with `docker-compose.yml` (Healthchecks, Volume Mounts, Environment Injection, Resource Limits).
-  - **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
-  - **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
+     - Lab 2.1.1: Authoring Secure Multi-Stage Dockerfiles with Non-Root Users and Minimal Base Images (Distroless/Alpine).
+     -  Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
+     - Lab 2.1.3: Designing Multi-Service Stacks with `docker-compose.yml` (Healthchecks, Volume Mounts, Environment Injection, Resource Limits).
+  4. **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
+  5. **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
 
 - ** [Chapter 4: 702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
   
