@@ -9,7 +9,7 @@ REF_DOC="reference.docx"
 
 echo "=== [Step 1/5] Checking Reference Template ==="
 
-# 1. Generate reference.docx from Chapter1.md if missing
+# Generate reference.docx from Chapter1.md if missing
 if [[ ! -f "$REF_DOC" ]]; then
     if [[ -f "Chapter1.md" ]]; then
         echo "Generating reference.docx baseline from Chapter1.md..."
@@ -22,7 +22,8 @@ if [[ ! -f "$REF_DOC" ]]; then
             --variable=sansfont="Calibri" \
             --variable=monofont="Consolas" \
             --variable=fontsize=11pt \
-            --variable=linestretch=1.15
+            --variable=linestretch=1.15 \
+            --variable=alignment=justified
     else
         echo "Warning: Chapter1.md not found. Generating default reference.docx..."
         pandoc --print-default-data-file reference.docx > "$REF_DOC"
@@ -31,7 +32,7 @@ else
     echo "Using existing $REF_DOC."
 fi
 
-echo "=== [Step 2/5] Assembling Chapters with Page Breaks ==="
+echo "=== [Step 2/5] Assembling Chapters with Strict \\newpage Breaks ==="
 
 # Identify README / Frontmatter
 FILES=()
@@ -51,7 +52,7 @@ fi
 
 echo "Processing source files in order: ${FILES[*]}"
 
-# Build combined manuscript with explicit page breaks (\newpage) before each chapter
+# Build combined manuscript with explicit \newpage tags before each chapter
 > "$COMBINED_MD"
 
 first_file=true
@@ -60,18 +61,18 @@ for f in "${FILES[@]}"; do
         cat "$f" >> "$COMBINED_MD"
         first_file=false
     else
-        # Inject page break before each chapter
-        echo -e "\n\n\\newpage\n" >> "$COMBINED_MD"
+        # Explicitly inject \newpage tag before each chapter
+        echo -e "\n\n\\newpage\n\n" >> "$COMBINED_MD"
         cat "$f" >> "$COMBINED_MD"
     fi
 done
 
-# Append references if a BibTeX file or embedded references exist
+# Append references section on a new page if a BibTeX file or embedded references exist
 if [[ -f "references.bib" ]] || grep -q "### References" "Chapter1.md" 2>/dev/null; then
-    echo -e "\n\n\\newpage\n# References\n" >> "$COMBINED_MD"
+    echo -e "\n\n\\newpage\n\n# References\n" >> "$COMBINED_MD"
 fi
 
-echo "=== [Step 3/5] Generating OpenXML DOCX via Pandoc ==="
+echo "=== [Step 3/5] Generating Justified OpenXML DOCX via Pandoc ==="
 
 PANDOC_ARGS=(
     "$COMBINED_MD"
@@ -81,6 +82,7 @@ PANDOC_ARGS=(
     --reference-doc="$REF_DOC"
     --variable=geometry:"paperwidth=176mm,paperheight=250mm,left=0.8in,right=0.6in,top=0.8in,bottom=0.8in"
     --variable=lang=en-US
+    --variable=alignment=justified
     --toc
     --toc-depth=3
     --number-sections
