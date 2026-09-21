@@ -2,14 +2,14 @@
 
 LPI  exam 701 DevOps  Tools Engineer exam preparation guide 
 
-# LPIC DevOps Tools Engineer (Exam 701) — Hands-On Scenario-Based Exam Preparation Guide
+# Hands-On Scenario-Based Exam Preparation Guide for LPIC DevOps Tools Engineer (Exam 701-200)
 
 ## Executive Overview & Study Strategy
 
-1. **Certification Overview:** LPI 701 DevOps Tools Engineer Exam Structure, Weightings, & Passing Criteria
-2. **Learning Methodology:** Scenario-Based Learning, Production Incident Simulations, & Tool Interoperability Labs
-3. **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
-4.  **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
+  1. **Certification Overview:** LPI 701 DevOps Tools Engineer Exam Structure, Weightings, & Passing Criteria
+  2. **Learning Methodology:** Scenario-Based Learning, Production Incident Simulations, & Tool Interoperability Labs
+  3. **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
+  4.  **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
 # Part I: Software Configuration Management & Machine Deployment (Weight 10)
 
@@ -22,8 +22,8 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 3. **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
 4. **Scenario Review & Self-Assessment:** Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
 
-- **[Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
-- 
+## **[Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
+
   - **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolution.
   - **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
   - **Hands-On Lab 1.2:**
