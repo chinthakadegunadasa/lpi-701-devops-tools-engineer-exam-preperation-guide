@@ -86,11 +86,11 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   - **Command & Syntax Reference:** `terraform init`, `plan`, `apply`, `destroy`, `state`, `import`, `workspace`, `fmt`, `validate`.
   - **Scenario Review & Self-Assessment:** Handling State File Discrepancies, Importing Existing Unmanaged Infrastructure, and Exam-Style Practice Questions.
 
-## Part IV: Continuous Integration & Continuous Delivery (CI/CD) (Weight 12)
+# Part IV: Continuous Integration & Continuous Delivery (CI/CD) (Weight 12)
 
-### Topic 704: CI/CD Pipelines & Service Integration
+## Topic 704: CI/CD Pipelines & Service Integration
 
-- **[Chapter 7: 704.1 Continuous Integration with Jenkins](Chapter7.md)**
+## **[Chapter 7: 704.1 Continuous Integration with Jenkins](Chapter7.md)**
   
   - **Theory & Objectives:** Jenkins Architecture (Master/Controller vs. Agents/Executors), Declarative vs. Scripted Pipelines, Jenkinsfile Syntax, Shared Libraries, Credentials Management, Plugins Ecosystem, Webhooks Integration.
   - 
