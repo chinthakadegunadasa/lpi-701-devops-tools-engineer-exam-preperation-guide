@@ -6,10 +6,10 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 
 ## Executive Overview & Study Strategy
 
-- **Certification Overview:** LPI 701 DevOps Tools Engineer Exam Structure, Weightings, & Passing Criteria
-- **Learning Methodology:** Scenario-Based Learning, Production Incident Simulations, & Tool Interoperability Labs
-- **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
-- **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
+1. **Certification Overview:** LPI 701 DevOps Tools Engineer Exam Structure, Weightings, & Passing Criteria
+2. **Learning Methodology:** Scenario-Based Learning, Production Incident Simulations, & Tool Interoperability Labs
+3. **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
+4.  **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
 ## Part I: Software Configuration Management & Machine Deployment (Weight 10)
 
