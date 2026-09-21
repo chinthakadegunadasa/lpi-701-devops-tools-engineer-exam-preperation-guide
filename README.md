@@ -18,20 +18,20 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 ## **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
   
 1. **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
-2. **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck — Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
+2. **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck - Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
 3. **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
 4. **Scenario Review & Self-Assessment:** Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
 
 ## **[Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
 
-  - **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolution.
-  - **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
-  - **Hands-On Lab 1.2:**
-    - Lab 1.2.1: Setting up Pre-Commit and Pre-Push Server-Side Hooks for Automated Linting and Secret Detection.
-    - Lab 1.2.2: Utilizing `git bisect` to Isolate a Memory Leak Introduced Across 500+ Commits.
-    - Lab 1.2.3: Managing Complex Multi-Repository Dependencies using Git Submodules and `git subtree`.
-  - **Command & Syntax Reference:** Deep Dive into `git cherry-pick`, `git rebase -i`, `git reflog`, `git worktree`.
-  - **Scenario Review & Self-Assessment:** Resolving Complex Three-Way Merge Conflicts and Exam-Style Practice Questions.
+  1. **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolution.
+  2. **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
+  3. **Hands-On Lab 1.2:**
+     3.1. Lab 1.2.1: Setting up Pre-Commit and Pre-Push Server-Side Hooks for Automated Linting and Secret Detection.
+     3.2. Lab 1.2.2: Utilizing `git bisect` to Isolate a Memory Leak Introduced Across 500+ Commits.
+     3.3. Lab 1.2.3: Managing Complex Multi-Repository Dependencies using Git Submodules and `git subtree`.
+  4. **Command & Syntax Reference:** Deep Dive into `git cherry-pick`, `git rebase -i`, `git reflog`, `git worktree`.
+  5. **Scenario Review & Self-Assessment:** Resolving Complex Three-Way Merge Conflicts and Exam-Style Practice Questions.
 
 ## Part II: Container Management & Orchestration (Weight 13)
 
