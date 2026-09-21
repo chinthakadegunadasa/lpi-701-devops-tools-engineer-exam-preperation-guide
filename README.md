@@ -43,37 +43,37 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   2. **Real-World Scenario 2.1:** Hardening and Optimizing a Vulnerable, Bloated Node.js/Python Enterprise Image (Reducing Image Size from 1.8GB to 45MB while Eliminating CVEs).
   3. **Hands-On Lab 2.1:**
      - Lab 2.1.1: Authoring Secure Multi-Stage Dockerfiles with Non-Root Users and Minimal Base Images (Distroless/Alpine).
-     -  Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
+     - Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
      - Lab 2.1.3: Designing Multi-Service Stacks with `docker-compose.yml` (Healthchecks, Volume Mounts, Environment Injection, Resource Limits).
   4. **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
   5. **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
 
-- ** [Chapter 4: 702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
+## ** [Chapter 4: 702.2 Container Orchestration & Clustering (Docker Swarm & Kubernetes Fundamentals)](Chapter4.md)**
   
-  - **Theory & Objectives:** Clustering Architecture, Manager/Worker Nodes, Raft Consensus, Service Scaling, Rolling Updates, Secrets Management, Ingress Routers (Traefik/Nginx), Pods, Services, Deployments, ConfigMaps.
-  - **Real-World Scenario 2.2:** High-Availability Cluster Outage Recovery — Migrating Services and Zero-Downtime Rolling Upgrades under Heavy Traffic Load.
-  - **Hands-On Lab 2.2:**
+## **Theory & Objectives:** Clustering Architecture, Manager/Worker Nodes, Raft Consensus, Service Scaling, Rolling Updates, Secrets Management, Ingress Routers (Traefik/Nginx), Pods, Services, Deployments, ConfigMaps.
+  1. **Real-World Scenario 2.2:** High-Availability Cluster Outage Recovery — Migrating Services and Zero-Downtime Rolling Upgrades under Heavy Traffic Load.
+  2. **Hands-On Lab 2.2:**
     - Lab 2.2.1: Initializing a Multi-Node Docker Swarm Cluster with TLS Verification and Network Overlay Encryption.
     - Lab 2.2.2: Deploying Microservices using Docker Stack Declarative YAMLs with Placement Constraints and Resource Limits.
     - Lab 2.2.3: Managing Kubernetes Deployment Manifests, StatefulSets, ClusterIP, NodePort, and LoadBalancer Services.
-  - **Command & Syntax Reference:** Docker Swarm Commands (`docker swarm`, `docker node`, `docker service`, `docker stack`) & Key `kubectl` Operations.
-  - **Scenario Review & Self-Assessment:** Cluster Node Drain Operations, Stateful Service Recovery, and Exam-Style Practice Questions.
+  3. **Command & Syntax Reference:** Docker Swarm Commands (`docker swarm`, `docker node`, `docker service`, `docker stack`) & Key `kubectl` Operations.
+  4. **Scenario Review & Self-Assessment:** Cluster Node Drain Operations, Stateful Service Recovery, and Exam-Style Practice Questions.
 
-## Part III: Configuration Management & Infrastructure Automation (Weight 14)
+# Part III: Configuration Management & Infrastructure Automation (Weight 14)
 
-### Topic 703: Infrastructure Configuration Management Tools
+## Topic 703: Infrastructure Configuration Management Tools
 
-- **[Chapter 5: 703.1 Infrastructure Automation with Ansible](Chapter5.md)**
+### **[Chapter 5: 703.1 Infrastructure Automation with Ansible](Chapter5.md)**
   
-  - **Theory & Objectives:** Agentless Architecture, Control Nodes vs. Managed Nodes, Inventory Files (Static/Dynamic), Playbooks, Modules, Roles, Handlers, Variables, Vault, Jinja2 Templating, Molecule Testing.
-  - **Real-World Scenario 3.1:** Automating Emergency OS Security Patching and Configuration Drift Remediation across 200 Hybrid Infrastructure Servers.
-  - **Hands-On Lab 3.1:**
+  1. **Theory & Objectives:** Agentless Architecture, Control Nodes vs. Managed Nodes, Inventory Files (Static/Dynamic), Playbooks, Modules, Roles, Handlers, Variables, Vault, Jinja2 Templating, Molecule Testing.
+  2. **Real-World Scenario 3.1:** Automating Emergency OS Security Patching and Configuration Drift Remediation across 200 Hybrid Infrastructure Servers.
+  3. **Hands-On Lab 3.1:**
     - Lab 3.1.1: Writing Modular Ansible Roles for Web Server (Nginx) and Database (PostgreSQL) Hardening.
     - Lab 3.1.2: Securing Sensitive Credentials using `ansible-vault` with Role-Based Password Files.
     - Lab 3.1.3: Dynamic Inventory Integration with AWS/GCP APIs and Custom Python Scripts.
     - Lab 3.1.4: Orchestrating Zero-Downtime Database Migration and Web Application Updates with Handlers and Block Conditions.
-  - **Command & Syntax Reference:** `ansible-playbook`, `ansible-galaxy`, `ansible-vault`, `ansible-doc`, Ad-hoc Execution Commands.
-  - **Scenario Review & Self-Assessment:** Debugging Playbook Execution Failures, Task Idempotence Validation, and Exam-Style Practice Questions.
+  3. **Command & Syntax Reference:** `ansible-playbook`, `ansible-galaxy`, `ansible-vault`, `ansible-doc`, Ad-hoc Execution Commands.
+  4. **Scenario Review & Self-Assessment:** Debugging Playbook Execution Failures, Task Idempotence Validation, and Exam-Style Practice Questions.
 
 - **[Chapter 6: 703.2 Infrastructure Provisioning with Terraform / Cloud Architecture]((Chapter6.md))**
 
