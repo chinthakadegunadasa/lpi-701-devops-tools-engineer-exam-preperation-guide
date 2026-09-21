@@ -21,7 +21,7 @@ if [[ -f "$REF_DOC" ]]; then
     exit 1
 fi
 
-# 2. Generate raw reference.docx from Chapter1.md or pandoc defaults
+# 2. Generate raw reference.docx baseline from Chapter1.md or pandoc defaults
 if [[ -f "Chapter1.md" ]]; then
     echo "Generating base $REF_DOC from Chapter1.md..."
     pandoc Chapter1.md -o "$REF_DOC"
@@ -67,6 +67,24 @@ try:
     jc.set(qn('w:val'), 'both')  # 'both' equals Fully Justified in OpenXML
     pPr.append(jc)
 
+    # Configure Heading Styles with Hanging Indents for Wrapped Lines
+    heading_indents = {
+        'Heading 1': (Inches(0.4), Inches(-0.4)),
+        'Heading 2': (Inches(0.5), Inches(-0.5)),
+        'Heading 3': (Inches(0.6), Inches(-0.6)),
+        'Heading 4': (Inches(0.7), Inches(-0.7)),
+    }
+
+    for style_name, (left_ind, first_ind) in heading_indents.items():
+        if style_name in doc.styles:
+            h_style = doc.styles[style_name]
+            h_format = h_style.paragraph_format
+            h_format.left_indent = left_ind
+            h_format.first_line_indent = first_ind
+            h_format.space_before = Pt(12)
+            h_format.space_after = Pt(6)
+            h_format.keep_with_next = True
+
     # Configure Code Block Styles
     for style_name in ['Source Code', 'Preformatted Text', 'CodeBlock']:
         if style_name in doc.styles:
@@ -94,7 +112,7 @@ else
     exit 1
 fi
 
-echo "=== [Step 2/5] Assembling Chapters with Page Breaks ==="
+echo "=== [Step 2/5] Assembling Chapters with Section & Page Breaks ==="
 
 FILES=()
 if [[ -f "README.md" ]]; then
@@ -112,8 +130,11 @@ fi
 
 echo "Processing source files in order: ${FILES[*]}"
 
-# Concatenate files with raw OpenXML/Pandoc page breaks
+# Clear combined manuscript
 > "$COMBINED_MD"
+
+PAGE_BREAK=$'\n\n```{=openxml}\n<w:p><w:r><w:br w:type="page"/></w:r></w:p>\n```\n\n'
+SECTION_BREAK=$'\n\n```{=openxml}\n<w:p><w:pPr><w:sectPr><w:type w:val="nextPage"/></w:sectPr></w:pPr></w:p>\n```\n\n'
 
 first_file=true
 for f in "${FILES[@]}"; do
@@ -121,14 +142,19 @@ for f in "${FILES[@]}"; do
         cat "$f" >> "$COMBINED_MD"
         first_file=false
     else
-        # Inject explicit Pandoc PageBreak tag
-        echo -e "\n\n```{=openxml}\n<w:p><w:r><w:br w:type=\"page\"/></w:r></w:p>\n```\n\n" >> "$COMBINED_MD"
+        # If transitioning to Chapter 1, inject section break to reset numbering
+        if [[ "$f" == *"Chapter1.md"* || "$f" == *"Chapter01.md"* ]]; then
+            echo "$SECTION_BREAK" >> "$COMBINED_MD"
+        else
+            echo "$PAGE_BREAK" >> "$COMBINED_MD"
+        fi
         cat "$f" >> "$COMBINED_MD"
     fi
 done
 
 if [[ -f "references.bib" ]] || grep -q "### References" "Chapter1.md" 2>/dev/null; then
-    echo -e "\n\n```{=openxml}\n<w:p><w:r><w:br w:type=\"page\"/></w:r></w:p>\n```\n\n# References\n" >> "$COMBINED_MD"
+    echo "$PAGE_BREAK" >> "$COMBINED_MD"
+    echo -e "# References\n" >> "$COMBINED_MD"
 fi
 
 echo "=== [Step 3/5] Compiling Intermediate DOCX with Pandoc ==="
@@ -139,7 +165,7 @@ PANDOC_ARGS=(
     --to=docx
     --output="$INTERMEDIATE_DOCX"
     --reference-doc="$REF_DOC"
-    --lang=en-US
+    -M lang=en-US
     --toc
     --toc-depth=3
     --number-sections
@@ -150,6 +176,72 @@ if [[ -f "references.bib" ]]; then
 fi
 
 pandoc "${PANDOC_ARGS[@]}"
+
+echo "=== Injecting Page Numbering (Restart = 1 at Chapter 1) ==="
+
+python3 - << 'EOF'
+import docx
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+def add_page_number(run):
+    fldChar1 = OxmlElement('w:fldChar')
+    fldChar1.set(qn('w:fldCharType'), 'begin')
+    instrText = OxmlElement('w:instrText')
+    instrText.set(qn('xml:space'), 'preserve')
+    instrText.text = "PAGE"
+    fldChar2 = OxmlElement('w:fldChar')
+    fldChar2.set(qn('w:fldCharType'), 'separate')
+    fldChar3 = OxmlElement('w:fldChar')
+    fldChar3.set(qn('w:fldCharType'), 'end')
+    
+    r = run._r
+    r.append(fldChar1)
+    r.append(instrText)
+    r.append(fldChar2)
+    r.append(fldChar3)
+
+try:
+    doc = docx.Document('temp_combined.docx')
+    sections = doc.sections
+
+    if len(sections) > 1:
+        # Second section (Chapter 1 onwards)
+        body_sec = sections[1]
+        body_sec.footer.is_linked_to_previous = False
+        
+        # Reset page number to 1
+        sectPr = body_sec._sectPr
+        pgNumType = OxmlElement('w:pgNumType')
+        pgNumType.set(qn('w:start'), '1')
+        sectPr.append(pgNumType)
+
+        # Clear front-matter footers
+        for p in sections[0].footer.paragraphs:
+            p.text = ""
+
+        # Set centered page number in body footer
+        footer_p = body_sec.footer.paragraphs[0]
+        footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        footer_p.text = ""
+        run = footer_p.add_run()
+        add_page_number(run)
+    else:
+        # Fallback single section
+        sec = sections[0]
+        footer_p = sec.footer.paragraphs[0]
+        footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        footer_p.text = ""
+        run = footer_p.add_run()
+        add_page_number(run)
+
+    doc.save('temp_combined.docx')
+    print("Page numbering successfully injected and restarted at Chapter 1.")
+except Exception as e:
+    print(f"Error configuring page numbering: {e}")
+    sys.exit(1)
+EOF
 
 echo "=== [Step 4/5] Rendering Print-Ready PDF via LibreOffice ==="
 
