@@ -15,7 +15,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 
 ## Topic 701: Modern Software Development & DevOps Principles
 
-## **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
+### **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
   
 1. **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
 2. **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck - Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
@@ -24,7 +24,7 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 
 ## **[Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
 
-  1. **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolution.
+  1. **Theory & Objectives:** Advanced Git Workflows (Trunk-Based vs. GitFlow), Rebasing vs. Merging, Submodules/Subtrees, Interactive Rebase, Hooks, Bisecting, and Merge Conflict Resolut*ion.
   2. **Real-World Scenario 1.2:** Resolving Production Branch Drift and Broken Release History during a High-Priority Hotfix.
   3. **Hands-On Lab 1.2:**
      3.1. Lab 1.2.1: Setting up Pre-Commit and Pre-Push Server-Side Hooks for Automated Linting and Secret Detection.
@@ -33,17 +33,17 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
   4. **Command & Syntax Reference:** Deep Dive into `git cherry-pick`, `git rebase -i`, `git reflog`, `git worktree`.
   5. **Scenario Review & Self-Assessment:** Resolving Complex Three-Way Merge Conflicts and Exam-Style Practice Questions.
 
-## Part II: Container Management & Orchestration (Weight 13)
+# Part II: Container Management & Orchestration (Weight 13)
 
-### Topic 702: Container Virtualization & Runtime Environments
+## Topic 702: Container Virtualization & Runtime Environments
 
-- **: [Chapter 3: 702.1 Container Virtualization with Docker](Chapter3.md)**
+### **: [Chapter 3: 702.1 Container Virtualization with Docker](Chapter3.md)**
   
-  - **Theory & Objectives:** OCI Specifications, Linux Namespaces & cgroups, Docker Engine Architecture, Multistage Builds, Storage Drivers, Networking Modes (Bridge, Host, Overlay, Macvlan), Docker Compose.
-  - **Real-World Scenario 2.1:** Hardening and Optimizing a Vulnerable, Bloated Node.js/Python Enterprise Image (Reducing Image Size from 1.8GB to 45MB while Eliminating CVEs).
-  - **Hands-On Lab 2.1:**
-    - Lab 2.1.1: Authoring Secure Multi-Stage Dockerfiles with Non-Root Users and Minimal Base Images (Distroless/Alpine).
-    - Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
+  1. **Theory & Objectives:** OCI Specifications, Linux Namespaces & cgroups, Docker Engine Architecture, Multistage Builds, Storage Drivers, Networking Modes (Bridge, Host, Overlay, Macvlan), Docker Compose.
+  2. **Real-World Scenario 2.1:** Hardening and Optimizing a Vulnerable, Bloated Node.js/Python Enterprise Image (Reducing Image Size from 1.8GB to 45MB while Eliminating CVEs).
+  3. **Hands-On Lab 2.1:**
+     3.1. Lab 2.1.1: Authoring Secure Multi-Stage Dockerfiles with Non-Root Users and Minimal Base Images (Distroless/Alpine).
+     3.2. Lab 2.1.2: Configuring Container Networking, Custom Bridge Networks, and Inter-Container DNS.
     - Lab 2.1.3: Designing Multi-Service Stacks with `docker-compose.yml` (Healthchecks, Volume Mounts, Environment Injection, Resource Limits).
   - **Command & Syntax Reference:** Complete Docker CLI (`build`, `run`, `network`, `volume`, `exec`, `inspect`, `system prune`).
   - **Scenario Review & Self-Assessment:** Debugging Crashed Containers using `docker logs`, `docker inspect`, and System-Level cgroup Resource Limits.
