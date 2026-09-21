@@ -73,8 +73,7 @@ try:
     jc.set(qn('w:val'), 'both')  # 'both' equals Fully Justified in OpenXML
     pPr.append(jc)
 
-    # Configure Heading Styles: 0.03in Before/After & OpenXML Hanging Indent
-    # Map of (Indent In Twips: 1 in = 1440 twips)
+    # Configure Heading Styles: 0.03in Before/After & Hanging Indent
     heading_configs = {
         'Heading 1': 576,  # 0.4 in
         'Heading 2': 720,  # 0.5 in
@@ -92,16 +91,14 @@ try:
             h_format.space_after = Pt(2.16)
             h_format.keep_with_next = True
 
-            # Inject XML Indent & Tab Stops directly so multi-line text wraps cleanly
+            # Inject XML Indent & Tab Stops directly
             h_pPr = h_style._element.get_or_add_pPr()
             
-            # Indent definition: left = indent_twips, hanging = indent_twips
             ind = OxmlElement('w:ind')
             ind.set(qn('w:left'), str(indent_twips))
             ind.set(qn('w:hanging'), str(indent_twips))
             h_pPr.append(ind)
 
-            # Tab stop matching the left indent point
             tabs = OxmlElement('w:tabs')
             tab = OxmlElement('w:tab')
             tab.set(qn('w:val'), 'num')
@@ -166,7 +163,7 @@ for f in "${FILES[@]}"; do
         cat "$f" >> "$COMBINED_MD"
         first_file=false
     else
-        # If transitioning to Chapter 1, inject section break to reset numbering & switch format
+        # Inject section break at Chapter 1
         if [[ "$f" == *"Chapter1.md"* || "$f" == *"Chapter01.md"* ]]; then
             echo "$SECTION_BREAK" >> "$COMBINED_MD"
         else
@@ -192,7 +189,6 @@ PANDOC_ARGS=(
     -M lang=en-US
     --toc
     --toc-depth=3
-    --number-sections
 )
 
 if [[ -f "references.bib" ]]; then
