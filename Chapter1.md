@@ -1,3 +1,4 @@
+\newpage
 # Chapter 1: 701.1 Principles of Software Development & DevOps Best Practices
 
 ## 1. Objective Architecture & Theoretical Foundations
