@@ -42,7 +42,7 @@ from docx.oxml.ns import qn
 try:
     doc = docx.Document('reference.docx')
 
-    # Force Page Setup (B5: 176mm x 250mm & Margins)
+    # Force Page Setup (B5: 176mm x 250mm & Mirrored Margins)
     for section in doc.sections:
         section.page_width = Mm(176)   # B5 Width
         section.page_height = Mm(250)  # B5 Height
@@ -50,6 +50,12 @@ try:
         section.bottom_margin = Inches(0.8)
         section.left_margin = Inches(0.8)   # Inside/Gutter
         section.right_margin = Inches(0.6)  # Outside
+
+    # Enable Mirrored Margins in XML settings
+    settings = doc.settings._element
+    if settings.find(qn('w:mirrorMargins')) is None:
+        mirror = OxmlElement('w:mirrorMargins')
+        settings.append(mirror)
 
     # Force Justification & Font on Normal Style
     style_normal = doc.styles['Normal']
@@ -67,23 +73,41 @@ try:
     jc.set(qn('w:val'), 'both')  # 'both' equals Fully Justified in OpenXML
     pPr.append(jc)
 
-    # Configure Heading Styles with Hanging Indents for Wrapped Lines
-    heading_indents = {
-        'Heading 1': (Inches(0.4), Inches(-0.4)),
-        'Heading 2': (Inches(0.5), Inches(-0.5)),
-        'Heading 3': (Inches(0.6), Inches(-0.6)),
-        'Heading 4': (Inches(0.7), Inches(-0.7)),
+    # Configure Heading Styles: 0.03in Before/After & OpenXML Hanging Indent
+    # Map of (Indent In Twips: 1 in = 1440 twips)
+    heading_configs = {
+        'Heading 1': 576,  # 0.4 in
+        'Heading 2': 720,  # 0.5 in
+        'Heading 3': 864,  # 0.6 in
+        'Heading 4': 1008, # 0.7 in
     }
 
-    for style_name, (left_ind, first_ind) in heading_indents.items():
+    for style_name, indent_twips in heading_configs.items():
         if style_name in doc.styles:
             h_style = doc.styles[style_name]
             h_format = h_style.paragraph_format
-            h_format.left_indent = left_ind
-            h_format.first_line_indent = first_ind
-            h_format.space_before = Pt(12)
-            h_format.space_after = Pt(6)
+            
+            # Spacing Before and After = 0.03 inches (~2.16 pt)
+            h_format.space_before = Pt(2.16)
+            h_format.space_after = Pt(2.16)
             h_format.keep_with_next = True
+
+            # Inject XML Indent & Tab Stops directly so multi-line text wraps cleanly
+            h_pPr = h_style._element.get_or_add_pPr()
+            
+            # Indent definition: left = indent_twips, hanging = indent_twips
+            ind = OxmlElement('w:ind')
+            ind.set(qn('w:left'), str(indent_twips))
+            ind.set(qn('w:hanging'), str(indent_twips))
+            h_pPr.append(ind)
+
+            # Tab stop matching the left indent point
+            tabs = OxmlElement('w:tabs')
+            tab = OxmlElement('w:tab')
+            tab.set(qn('w:val'), 'num')
+            tab.set(qn('w:pos'), str(indent_twips))
+            tabs.append(tab)
+            h_pPr.append(tabs)
 
     # Configure Code Block Styles
     for style_name in ['Source Code', 'Preformatted Text', 'CodeBlock']:
@@ -142,7 +166,7 @@ for f in "${FILES[@]}"; do
         cat "$f" >> "$COMBINED_MD"
         first_file=false
     else
-        # If transitioning to Chapter 1, inject section break to reset numbering
+        # If transitioning to Chapter 1, inject section break to reset numbering & switch format
         if [[ "$f" == *"Chapter1.md"* || "$f" == *"Chapter01.md"* ]]; then
             echo "$SECTION_BREAK" >> "$COMBINED_MD"
         else
@@ -177,10 +201,11 @@ fi
 
 pandoc "${PANDOC_ARGS[@]}"
 
-echo "=== Injecting Page Numbering (Restart = 1 at Chapter 1) ==="
+echo "=== Injecting Page Numbering (Roman for TOC, Restart 1 at Chapter 1) ==="
 
 python3 - << 'EOF'
 import docx
+import sys
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -207,39 +232,44 @@ try:
     sections = doc.sections
 
     if len(sections) > 1:
-        # Second section (Chapter 1 onwards)
+        # Section 1: Front Matter / TOC -> Roman Numerals (i, ii, iii)
+        front_sec = sections[0]
+        front_sectPr = front_sec._sectPr
+        pgNumTypeFront = OxmlElement('w:pgNumType')
+        pgNumTypeFront.set(qn('w:fmt'), 'lowerRoman')
+        front_sectPr.append(pgNumTypeFront)
+
+        front_footer_p = front_sec.footer.paragraphs[0]
+        front_footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        front_footer_p.text = ""
+        add_page_number(front_footer_p.add_run())
+
+        # Section 2: Chapter 1 Onwards -> Unlink, Reset = 1, Arabic Numerals
         body_sec = sections[1]
         body_sec.footer.is_linked_to_previous = False
         
-        # Reset page number to 1
-        sectPr = body_sec._sectPr
-        pgNumType = OxmlElement('w:pgNumType')
-        pgNumType.set(qn('w:start'), '1')
-        sectPr.append(pgNumType)
+        body_sectPr = body_sec._sectPr
+        pgNumTypeBody = OxmlElement('w:pgNumType')
+        pgNumTypeBody.set(qn('w:fmt'), 'decimal')
+        pgNumTypeBody.set(qn('w:start'), '1')
+        body_sectPr.append(pgNumTypeBody)
 
-        # Clear front-matter footers
-        for p in sections[0].footer.paragraphs:
-            p.text = ""
-
-        # Set centered page number in body footer
-        footer_p = body_sec.footer.paragraphs[0]
-        footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        footer_p.text = ""
-        run = footer_p.add_run()
-        add_page_number(run)
+        body_footer_p = body_sec.footer.paragraphs[0]
+        body_footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        body_footer_p.text = ""
+        add_page_number(body_footer_p.add_run())
     else:
         # Fallback single section
         sec = sections[0]
         footer_p = sec.footer.paragraphs[0]
         footer_p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         footer_p.text = ""
-        run = footer_p.add_run()
-        add_page_number(run)
+        add_page_number(footer_p.add_run())
 
     doc.save('temp_combined.docx')
-    print("Page numbering successfully injected and restarted at Chapter 1.")
+    print("Page numbering successfully updated: Roman for TOC/Front matter, Arabic starting at 1 for Chapter 1.")
 except Exception as e:
-    print(f"Error configuring page numbering: {e}")
+    print(f"Error configuring page numbering: {e}", file=sys.stderr)
     sys.exit(1)
 EOF
 
