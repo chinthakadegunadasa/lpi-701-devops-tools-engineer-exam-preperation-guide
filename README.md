@@ -11,16 +11,16 @@ LPI  exam 701 DevOps  Tools Engineer exam preparation guide
 3. **Lab Environment Architecture:** Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
 4.  **Exam Strategy:** Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
-## Part I: Software Configuration Management & Machine Deployment (Weight 10)
+# Part I: Software Configuration Management & Machine Deployment (Weight 10)
 
-### Topic 701: Modern Software Development & DevOps Principles
+## Topic 701: Modern Software Development & DevOps Principles
 
-- **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
+## **[Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)**
   
-  - **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
-  - **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck — Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
-  - **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
-  - **Scenario Review & Self-Assessment:** Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
+1. **Theory & Objectives:** Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
+2. **Real-World Scenario 1.1:** Deconstructing a Monolithic Deployment Bottleneck — Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
+3. **Hands-On Lab 1.1:** Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
+4. **Scenario Review & Self-Assessment:** Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
 
 - **[Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)**
 - 
