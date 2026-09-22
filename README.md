@@ -2,13 +2,21 @@
 LPI  exam 701-200 DevOps  Tools Engineer exam preparation guide. The Hands-On Scenario-Based Exam Preparation Guide for LPIC DevOps Tools Engineer (Exam 701-200)
 
 ## Executive Overview & Study Strategy
-### Certification Overview: 
+
+### Certification Overview
+
 LPI 701 DevOps Tools Engineer Exam Structure, Weightings, & Passing Criteria
+
 ### Learning Methodology
+
 Scenario-Based Learning, Production Incident Simulations, & Tool Interoperability Labs
+
 ### Lab Environment Architecture
+
 Local Multi-Node Virtualization Setup (Vagrant, VirtualBox, Docker Desktop, AWS LocalStack)
+
 ### Exam Strategy
+
 Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key Syntax Cheat Sheets
 
 # Part I: Software Configuration Management & Machine Deployment (Weight 10)
@@ -18,12 +26,19 @@ Managing Objective-Specific Weightings, Deconstructing Scenario Questions, & Key
 ### [Chapter 1: 701-1 Principles of Software Development & DevOps Best Practices](Chapter1.md)
   
 #### Theory & Objectives
+
 Agile vs. DevOps, Continuous Delivery, Immutable Infrastructure, Infrastructure as Code (IaC), GitOps Paradigms.
+
 #### Real-World Scenario 1.1 
+
 Deconstructing a Monolithic Deployment Bottleneck - Transitioning an Enterprise E-Commerce Platform to a CI/CD-Driven Microservices Architecture.
+
 #### Hands-On Lab 701.1
+
 Standardizing Developer Workspaces using Docker Dev Containers and Local Test Environments.
+
 #### Scenario Review & Self-Assessment
+
 Troubleshooting Deployment Friction Points, Value Stream Mapping Analysis, and Exam-Style Practice Questions.
 
 ### [Chapter 2: 701.2 Source Code & Version Control Systems (Git)](Chapter2.md)
