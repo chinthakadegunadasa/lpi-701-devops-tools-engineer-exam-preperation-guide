@@ -201,7 +201,7 @@ PANDOC_ARGS=(
     --to=docx
     --output="$INTERMEDIATE_DOCX"
     --reference-doc="$REF_DOC"
-    --lang=en-US
+    #--lang=en-US
     --toc
     --toc-depth=3
     #--number-sections
