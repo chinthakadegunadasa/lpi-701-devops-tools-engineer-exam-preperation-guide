@@ -1,7 +1,5 @@
 # Introduction
-LPI  exam 701-200 DevOps  Tools Engineer exam preparation guide 
-
-# Hands-On Scenario-Based Exam Preparation Guide for LPIC DevOps Tools Engineer (Exam 701-200)
+LPI  exam 701-200 DevOps  Tools Engineer exam preparation guide. The Hands-On Scenario-Based Exam Preparation Guide for LPIC DevOps Tools Engineer (Exam 701-200)
 
 ## Executive Overview & Study Strategy
 ### Certification Overview: 
