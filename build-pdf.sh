@@ -59,7 +59,7 @@ try:
 
     # Force Justification & Font on Normal Style
     style_normal = doc.styles['Normal']
-    style_normal.font.name = 'Cambria'
+    style_normal.font.name = 'Google Sans Flex'
     style_normal.font.size = Pt(11)
     
     p_format = style_normal.paragraph_format
