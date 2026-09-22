@@ -51,13 +51,20 @@ try:
         section.left_margin = Inches(0.8)   # Inside/Gutter
         section.right_margin = Inches(0.6)  # Outside
 
-    # Enable Mirrored Margins in XML settings
     settings = doc.settings._element
+
+    # 1. Enable Mirrored Margins
     if settings.find(qn('w:mirrorMargins')) is None:
         mirror = OxmlElement('w:mirrorMargins')
         settings.append(mirror)
 
-    # Force Justification & Font on Normal Style
+    # 2. Enable Automatic Hyphenation
+    if settings.find(qn('w:autoHyphen')) is None:
+        auto_hyphen = OxmlElement('w:autoHyphen')
+        auto_hyphen.set(qn('w:val'), 'true')
+        settings.append(auto_hyphen)
+
+    # Force Justification & Google Sans Flex on Normal Style
     style_normal = doc.styles['Normal']
     style_normal.font.name = 'Google Sans Flex'
     style_normal.font.size = Pt(11)
@@ -73,17 +80,23 @@ try:
     jc.set(qn('w:val'), 'both')  # 'both' equals Fully Justified in OpenXML
     pPr.append(jc)
 
-    # Configure Heading Styles: 0.03in Before/After & Hanging Indent
+    # Configure Heading Styles: Google Sans Flex, 0.03in Before/After & Offset Numbering Indent
+    # Map of Indents in Twips (1 in = 1440 twips)
     heading_configs = {
-        'Heading 1': 576,  # 0.4 in
-        'Heading 2': 720,  # 0.5 in
-        'Heading 3': 864,  # 0.6 in
-        'Heading 4': 1008, # 0.7 in
+        'Heading 1': 576,  # 0.4 in offset
+        'Heading 2': 720,  # 0.5 in offset
+        'Heading 3': 864,  # 0.6 in offset
+        'Heading 4': 1008, # 0.7 in offset
     }
 
     for style_name, indent_twips in heading_configs.items():
         if style_name in doc.styles:
             h_style = doc.styles[style_name]
+            
+            # Set Heading Font to Google Sans Flex
+            h_style.font.name = 'Google Sans Flex'
+            h_style.font.bold = True
+
             h_format = h_style.paragraph_format
             
             # Spacing Before and After = 0.03 inches (~2.16 pt)
@@ -91,26 +104,28 @@ try:
             h_format.space_after = Pt(2.16)
             h_format.keep_with_next = True
 
-            # Inject XML Indent & Tab Stops directly
+            # Inject XML Indent & Tab Stops so section numbers offset cleanly from heading text
             h_pPr = h_style._element.get_or_add_pPr()
             
+            # Indent definition: left offset with matching negative hanging indent
             ind = OxmlElement('w:ind')
             ind.set(qn('w:left'), str(indent_twips))
             ind.set(qn('w:hanging'), str(indent_twips))
             h_pPr.append(ind)
 
+            # Tab stop matching the offset point
             tabs = OxmlElement('w:tabs')
             tab = OxmlElement('w:tab')
-            tab.set(qn('w:val'), 'num')
+            tab.set(qn('w:val'), 'left')
             tab.set(qn('w:pos'), str(indent_twips))
             tabs.append(tab)
             h_pPr.append(tabs)
 
-    # Configure Code Block Styles
+    # Configure Code Block Styles: Google Sans Code
     for style_name in ['Source Code', 'Preformatted Text', 'CodeBlock']:
         if style_name in doc.styles:
             code_style = doc.styles[style_name]
-            code_style.font.name = 'Consolas'
+            code_style.font.name = 'Google Sans Code'
             code_style.font.size = Pt(9.5)
             # Disable justification for code blocks
             code_pPr = code_style._element.get_or_add_pPr()
@@ -163,7 +178,7 @@ for f in "${FILES[@]}"; do
         cat "$f" >> "$COMBINED_MD"
         first_file=false
     else
-        # Inject section break at Chapter 1
+        # If transitioning to Chapter 1, inject section break to reset numbering & switch format
         if [[ "$f" == *"Chapter1.md"* || "$f" == *"Chapter01.md"* ]]; then
             echo "$SECTION_BREAK" >> "$COMBINED_MD"
         else
@@ -189,6 +204,7 @@ PANDOC_ARGS=(
     -M lang=en-US
     --toc
     --toc-depth=3
+    --number-sections
 )
 
 if [[ -f "references.bib" ]]; then
